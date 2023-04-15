@@ -119,23 +119,27 @@ public class PlayerController : MonoBehaviour
             angles.x = 40;
         }
         followTransform.transform.localEulerAngles = angles;
+        // CAMERA ROTATION DONE
+        //  IF NO INPUT  -> FREE LOOK
         if (_moveInput.x == 0 && _moveInput.y == 0) 
         {   
             nextPosition = transform.position;
             return; 
         }
-        float _moveSpeed = movementSpeed / 100f;
+        //CHARACTER ROTATION LERP
+
+        float _moveSpeed = movementSpeed * Time.fixedDeltaTime;
         Vector3 position = (transform.forward * _moveInput.y * _moveSpeed) + (transform.right * _moveInput.x * _moveSpeed);
         nextPosition = transform.position + position;        
         Quaternion oldrotation = transform.rotation;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0), rotateSpeed);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0), rotateSpeed*Time.fixedDeltaTime);
         //Set the player rotation based on the look transform
         // transform.rotation = Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0);
         //reset the y rotation of the look transform
         // followTransform.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
         float xRotChange = oldrotation.eulerAngles.x - transform.rotation.eulerAngles.x;
         followTransform.transform.localEulerAngles = new Vector3(angles.x - xRotChange,0, 0);
-        oldrotation.w= 1;
+        
     }
     
     private void Recycle()
