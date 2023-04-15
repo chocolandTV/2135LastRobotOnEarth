@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     {
         
         float step = movementSpeed * Time.fixedDeltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, nextPosition,step);
+        _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, nextPosition,step));
         // transform.position = nextPosition;
     }
     private void HandleInput()
@@ -134,12 +134,12 @@ public class PlayerController : MonoBehaviour
         Quaternion oldrotation = transform.rotation;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0), rotateSpeed*Time.fixedDeltaTime);
         //Set the player rotation based on the look transform
-        // transform.rotation = Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0);
-        //reset the y rotation of the look transform
-        // followTransform.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
-        float xRotChange = oldrotation.eulerAngles.x - transform.rotation.eulerAngles.x;
-        followTransform.transform.localEulerAngles = new Vector3(angles.x - xRotChange,0, 0);
         
+        //reset the y rotation of the look transform
+        
+        float xRotChange = oldrotation.eulerAngles.x - transform.rotation.eulerAngles.x;
+        float yRotChange = oldrotation.eulerAngles.y - transform.rotation.eulerAngles.y;
+        followTransform.transform.localRotation*= Quaternion.AngleAxis(yRotChange,Vector3.up);
     }
     
     private void Recycle()
