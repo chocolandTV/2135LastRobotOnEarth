@@ -17,8 +17,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 smoothDeltaPosition = Vector2.zero;
     public Vector2 velocity = Vector2.zero;
     public float magnitude = 0.25f;
+    [SerializeField] private float rotateSpeed = 0.25f;
     private bool isRecycling;
-   
+   // TEST
+    List<Vector2> test1Array = new List<Vector2>();
+    List<Vector2> test2Array = new List<Vector2>();
     [SerializeField] private Transform followTransform;
 
     // LOOK VARS
@@ -68,39 +71,39 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate() {
        HandleInput();
        Move();
-        // Recycle();
+    // Recycle();
 
+    }
+    [ContextMenu("Print Arrays")]
+    private void TestPrint()
+    {
+        Debug.Log( "Ar1Count: "+ test1Array.Count + " Ar2Count: " + test2Array.Count);
+        Vector2 Ar1Sum = Vector2.zero;
+        foreach (Vector2 item in test1Array)
+        {
+            Ar1Sum+= new Vector2 (Mathf.Abs(item.x),Mathf.Abs(item.y)) ;
+        }
+        Vector2 Ar2Sum = Vector2.zero;
+        foreach (Vector2 item in test2Array)
+        {
+            Ar2Sum+= new Vector2 (Mathf.Abs(item.x),Mathf.Abs(item.y)) ;
+        }
+        Debug.Log("Ar1Sum: " + Ar1Sum +  " - Ar2Sum: " + Ar2Sum);
     }
     private void Move()
     {
-         Vector3 worldDeltaPosition = nextPosition - transform.position;
-
-        //Map to local space
-        float dX = Vector3.Dot(transform.right, worldDeltaPosition);
-        float dY = Vector3.Dot(transform.forward, worldDeltaPosition);
-        Vector2 deltaPosition = new Vector2(dX, dY);
-
-        float smooth = Mathf.Min(1.0f, Time.deltaTime / 0.15f);
-        smoothDeltaPosition = Vector2.Lerp(smoothDeltaPosition, deltaPosition, smooth);
-
-        if (Time.deltaTime > 1e-5f)
-        {
-            velocity = smoothDeltaPosition / Time.deltaTime;
-        }
-
         
-        transform.position = nextPosition;
+        float step = movementSpeed * Time.fixedDeltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, nextPosition,step);
+        // transform.position = nextPosition;
     }
     private void HandleInput()
     {
-      
-
         //Rotate the Follow Target transform based on the input
-        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.x * rotationPowerX, Vector3.up);
+        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.x * rotationPowerX* Time.fixedDeltaTime, Vector3.up);
 
-        
-        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.y * rotationPowerY, Vector3.right);
-
+        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.y * rotationPowerY *Time.fixedDeltaTime, Vector3.right);
+        _lookInputDelta = Vector2.zero;
         var angles = followTransform.transform.localEulerAngles;
         angles.z = 0;
 
@@ -115,19 +118,24 @@ public class PlayerController : MonoBehaviour
         {
             angles.x = 40;
         }
-
-
         followTransform.transform.localEulerAngles = angles;
-        
+        if (_moveInput.x == 0 && _moveInput.y == 0) 
+        {   
+            nextPosition = transform.position;
+            return; 
+        }
         float _moveSpeed = movementSpeed / 100f;
         Vector3 position = (transform.forward * _moveInput.y * _moveSpeed) + (transform.right * _moveInput.x * _moveSpeed);
         nextPosition = transform.position + position;        
-        
-
+        Quaternion oldrotation = transform.rotation;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0), rotateSpeed);
         //Set the player rotation based on the look transform
-        transform.rotation = Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0);
+        // transform.rotation = Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0);
         //reset the y rotation of the look transform
-        followTransform.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
+        // followTransform.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
+        float xRotChange = oldrotation.eulerAngles.x - transform.rotation.eulerAngles.x;
+        followTransform.transform.localEulerAngles = new Vector3(angles.x - xRotChange,0, 0);
+        oldrotation.w= 1;
     }
     
     private void Recycle()
@@ -141,7 +149,8 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            _lookInputDelta = context.ReadValue<Vector2>();
+            _lookInputDelta += context.ReadValue<Vector2>();
+            
         }
         else if (context.canceled)
         {
