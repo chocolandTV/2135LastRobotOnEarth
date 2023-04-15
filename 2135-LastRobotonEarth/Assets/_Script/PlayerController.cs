@@ -14,13 +14,17 @@ public class PlayerController : MonoBehaviour
     private Vector2 _moveInput;
     private Vector2 _lookInputDelta;
     private Vector2 _lookVector;
+    private Vector2 smoothDeltaPosition = Vector2.zero;
+    public Vector2 velocity = Vector2.zero;
+    public float magnitude = 0.25f;
     private bool isRecycling;
    
     [SerializeField] private Transform followTransform;
 
     // LOOK VARS
-    [SerializeField] private float rotationPower = 3f;
-    [SerializeField] private float rotationLerp = 0.5f;
+    [SerializeField] private float rotationPowerX = 3f;
+    [SerializeField] private float rotationPowerY = 3f;
+    // [SerializeField] private float rotationLerp = 0.5f;
     private Quaternion nextRotation;
     public Vector3 nextPosition;
     private Camera _camera;
@@ -63,18 +67,39 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate() {
        HandleInput();
+       Move();
         // Recycle();
 
+    }
+    private void Move()
+    {
+         Vector3 worldDeltaPosition = nextPosition - transform.position;
+
+        //Map to local space
+        float dX = Vector3.Dot(transform.right, worldDeltaPosition);
+        float dY = Vector3.Dot(transform.forward, worldDeltaPosition);
+        Vector2 deltaPosition = new Vector2(dX, dY);
+
+        float smooth = Mathf.Min(1.0f, Time.deltaTime / 0.15f);
+        smoothDeltaPosition = Vector2.Lerp(smoothDeltaPosition, deltaPosition, smooth);
+
+        if (Time.deltaTime > 1e-5f)
+        {
+            velocity = smoothDeltaPosition / Time.deltaTime;
+        }
+
+        
+        transform.position = nextPosition;
     }
     private void HandleInput()
     {
       
 
         //Rotate the Follow Target transform based on the input
-        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.x * rotationPower, Vector3.up);
+        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.x * rotationPowerX, Vector3.up);
 
         
-        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.y * rotationPower, Vector3.right);
+        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.y * rotationPowerY, Vector3.right);
 
         var angles = followTransform.transform.localEulerAngles;
         angles.z = 0;
@@ -94,19 +119,8 @@ public class PlayerController : MonoBehaviour
 
         followTransform.transform.localEulerAngles = angles;
         
-
-        
-        // nextRotation = Quaternion.Lerp(followTransform.transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
-
-        if (_moveInput.x == 0 && _moveInput.y == 0) 
-        {   
-            nextPosition = transform.position;
-
-            
-            return; 
-        }
-        //float _moveSpeed = movementSpeed / 100f;
-        Vector3 position = (transform.forward * _moveInput.y * movementSpeed) + (transform.right * _moveInput.x * movementSpeed);
+        float _moveSpeed = movementSpeed / 100f;
+        Vector3 position = (transform.forward * _moveInput.y * _moveSpeed) + (transform.right * _moveInput.x * _moveSpeed);
         nextPosition = transform.position + position;        
         
 
@@ -114,8 +128,6 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0);
         //reset the y rotation of the look transform
         followTransform.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
-    
-
     }
     
     private void Recycle()
