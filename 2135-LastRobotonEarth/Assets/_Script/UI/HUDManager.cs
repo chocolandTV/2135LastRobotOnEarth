@@ -22,6 +22,10 @@ public class HUDManager : MonoBehaviour
         Instance = this;
         
     }
+    public bool isUpgradestoreActive()
+    {
+        return (hudUpgradeUI.activeSelf);
+    }
     public void OnUpgradeStoreChange(bool value)
     {
         hudUpgradeUI.SetActive(value);

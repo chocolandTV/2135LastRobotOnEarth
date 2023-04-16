@@ -11,7 +11,7 @@ public class VariableManager : MonoBehaviour
     [field: SerializeField] public float Game_thruster_power { get; private set; }
     [field: SerializeField] public float Game_tank_capacity_multiplier { get; private set; }
     [field: SerializeField] public float Game_robot_hull_multiplier { get; private set; }
-
+    
     public void AddMovementMultiplier(float value)
     {
         Game_movement_multiplier += value;

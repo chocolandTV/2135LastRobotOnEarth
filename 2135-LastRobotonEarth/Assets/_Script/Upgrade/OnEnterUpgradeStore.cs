@@ -15,7 +15,7 @@ public class OnEnterUpgradeStore : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             HUDManager.Instance.OnUpgradeStoreChange(false);
-            HUDManager.Instance.OnCrossHairChange(false);
+            HUDManager.Instance.OnCrossHairChange(true);
         }
     }
 }

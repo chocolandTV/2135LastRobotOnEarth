@@ -148,11 +148,15 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             // INTERACT Set Object Parent RobotHand
+            if(HUDManager.Instance.isUpgradestoreActive())
+            {
+                // Disable
+                HUDManager.Instance.OnUpgradeStoreChange(false);
+                HUDManager.Instance.OnCrossHairChange(true);
+                //  HERE START ROBOT UPGRADE EVENT
+            }
         }
-        if (context.canceled)
-        {
-            // INTERACT unSet Object Parent RobotHand
-        }
+        
     }
     private void OnRecycleInput(InputAction.CallbackContext context)
     {
