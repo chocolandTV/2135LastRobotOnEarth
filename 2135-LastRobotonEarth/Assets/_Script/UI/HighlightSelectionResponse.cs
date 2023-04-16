@@ -12,7 +12,7 @@ public class HighlightSelectionResponse : MonoBehaviour, ISelectionResponse
             var selectionRenderer = selection.GetComponent<Renderer>();
             if(selectionRenderer != null)
             {
-                Debug.Log(" new Material Change");
+                
                 selectionRenderer.material = highlightMaterial;
                 selection.GetComponent<ResourceSourceUI>().OnCrosshairEnter();
             }
@@ -24,7 +24,7 @@ public class HighlightSelectionResponse : MonoBehaviour, ISelectionResponse
             var selectionRenderer = selection.GetComponent<Renderer>();
             if(selectionRenderer != null)
             {
-                Debug.Log(" Default Material Change");
+                
                 selectionRenderer.material = oldMaterial;
                 selection.GetComponent<ResourceSourceUI>().OnCrosshairExit();
             }

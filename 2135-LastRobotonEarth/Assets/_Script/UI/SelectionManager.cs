@@ -10,6 +10,7 @@ public class SelectionManager : MonoBehaviour
     private void Awake()
     {
         _selectionResponse = GetComponent<ISelectionResponse>();
+        Debug.Log(Camera.main);
         
     }
     void OnApplicationFocus(bool hasFocus)
@@ -33,7 +34,8 @@ public class SelectionManager : MonoBehaviour
             _selectionResponse.OnDeselect(_selection);
         }
         // CREATING RAY
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f,0f));
         // Selection Determination
         _selection = null;
         RaycastHit hit;
@@ -51,7 +53,7 @@ public class SelectionManager : MonoBehaviour
             _selectionResponse.OnSelect(_selection);
         }
     }
-
+    
 }
 
 
