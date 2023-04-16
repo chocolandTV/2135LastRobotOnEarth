@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class ResourceSource : MonoBehaviour
 {
     public int quantity;
-    
+    [SerializeField]private TextMeshProUGUI text;
+    private void Start() {
+        text.text = "+ " + quantity;
+    }
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Recycler"))
         {
