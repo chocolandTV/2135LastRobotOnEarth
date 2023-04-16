@@ -9,15 +9,12 @@ public class PlayerController : MonoBehaviour
 
     // Player Vars
     private Rigidbody _rigidbody;
-    [SerializeField]private float movementSpeed = 5.0f;
+    [SerializeField]private float movementSpeed = 5.0f; // Upgrade Multiplier 1; 10
     private Vector2 _moveInput;
     private Vector2 _lookInputDelta;
     private Vector2 _lookVector;
     [SerializeField] private float rotateSpeed = 0.25f;
     public bool isRecycling{get;set;}
-   // TEST
-    List<Vector2> test1Array = new List<Vector2>();
-    List<Vector2> test2Array = new List<Vector2>();
     [SerializeField] private Transform followTransform;
 
     // LOOK VARS
@@ -72,7 +69,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         
-        float step = movementSpeed * Time.fixedDeltaTime;
+        float step = (movementSpeed* VariableManager.Instance.Game_movement_multiplier)* Time.fixedDeltaTime;
         transform.position = Vector3.MoveTowards(transform.position, nextPosition,step);
         
     }

@@ -19,6 +19,8 @@ public class ResourceSource : MonoBehaviour
                     gameObject.transform.localScale  = (Vector3.one * i/100);
                 }
                 ResourceManager.Instance.AddResourcePlayer(quantity);
+                // TEST 
+                VariableManager.Instance.AddTankCapacity(0.1f);
                 Destroy(gameObject);
             }
         }

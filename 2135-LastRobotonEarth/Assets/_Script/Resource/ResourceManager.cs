@@ -11,8 +11,9 @@ public class ResourceManager : MonoBehaviour
     public int GamePlayerScraps { get; private set; }
 
     // LIMITS 
-    public int MaxScraps { get; private set; }
+    private int MaxScraps;
 
+    public int SuperMaxScraps  =>  MaxScraps * (int)VariableManager.Instance.Game_tank_capacity_multiplier;
     private void Awake() {
         if(Instance != null)
         {
@@ -36,18 +37,24 @@ public class ResourceManager : MonoBehaviour
     }
     public bool isSpaceInStorage()
     {
-        if(GamePlayerScraps < MaxScraps)
+        if(GamePlayerScraps < SuperMaxScraps)
         {
             Overload();
         }
-        return (GamePlayerScraps < MaxScraps);
+        return (GamePlayerScraps < SuperMaxScraps);
     }
     ///////////////////////////////// SUBTRACT ///////////////////////
-    public void RemoveResource(int value)
+    public void RemoveRocketResource(int value)
     {
         GameRocketScraps -= value;
         Debug.Log("RM:Payed " + value+ " for Upgrade");
-        TankManager.Instance.OnChangeValue( (int) Mathf.Round((float)GamePlayerScraps/ (float)MaxScraps *100f));
+        TankManager.Instance.OnChangeValue( (int) Mathf.Round((float)GamePlayerScraps/ (float)SuperMaxScraps *100f));
+    }
+    public void RemovePlayerResource()
+    {
+        Debug.Log("RM:Player spend " + GamePlayerScraps+ " to the Rocket");
+        GamePlayerScraps = 0;
+        TankManager.Instance.OnChangeValue( (int) Mathf.Round((float)GamePlayerScraps/ (float)SuperMaxScraps *100f));
     }
     ////////////////////////////////// ADD ///////////////////////////
     public void AddResourcePlayer(int value)
@@ -55,18 +62,14 @@ public class ResourceManager : MonoBehaviour
         GamePlayerScraps+=value;
         
         Debug.Log("RM: Stored " +  value + " in PlayerStorage");
-        TankManager.Instance.OnChangeValue((int) Mathf.Round((float)GamePlayerScraps/ (float)MaxScraps *100f));
+        TankManager.Instance.OnChangeValue((int) Mathf.Round((float)GamePlayerScraps/ (float)SuperMaxScraps *100f));
     }
     public void AddResourceRocket(int value)
     {
         GameRocketScraps+=value;
         Debug.Log("RM: Stored " +  value + " in RocketStorage");
     }
-    public void AddStorageCapacity(float percent)
-    {
-        MaxScraps += (int)(MaxScraps * ( percent/100.0f));
-        Debug.Log("RM: new StorageCapacity: " + MaxScraps);
-    }
+    
     // EFFECTS
     private void Overload()
     {
