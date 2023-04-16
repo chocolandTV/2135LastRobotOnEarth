@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RocketGathering : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    [SerializeField] private ParticleSystem system;
+    ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class RocketGathering : MonoBehaviour
             int holdScraps = ResourceManager.Instance.GamePlayerScraps;
             ResourceManager.Instance.RemovePlayerResource();
             ResourceManager.Instance.AddResourceRocket(holdScraps);
-            // ANIMATION PLAY
+            system.Emit(emitParams, holdScraps*10);
         }
     }
     

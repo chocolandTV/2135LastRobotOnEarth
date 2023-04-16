@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 83188
+  controlID: 19
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -202,9 +202,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 80a4faff
-      m_LastClickedID: -351104
-      m_ExpandedIDs: a21afbff7c1bfbff2a22fbff8e46fcff0c2afeff28d7feff7cd7feff3adbfeff0207ffff5440ffff5042ffffea45ffff3e46ffff8c46ffff8e85ffff1686ffff2887ffff62faffffa4faffffd8faffffe0fafffff4faffff08fbffff0cfbffff10fbffff14fbffff16fbfffff4ffffff006c0000aaba0100
+      m_SelectedIDs: 06f8ffff
+      m_LastClickedID: -2042
+      m_ExpandedIDs: 18f8ffff22f8ffffecf8ffff14fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -220,7 +220,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 14}
+        m_ClientGUIView: {fileID: 4}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -298,22 +298,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/ScriptableObjects
+    - Assets/_Script/Resource
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/ScriptableObjects
+  - Assets/_Script/Resource
   m_LastFoldersGridSize: 16
   m_LastProjectPath: "C:\\Users\\Robert M\xF6genburg\\Documents\\GitHub\\2135LastRobotOnEarth\\2135-LastRobotonEarth"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 164}
-    m_SelectedIDs: eaff0100
-    m_LastClickedID: 131050
-    m_ExpandedIDs: 00000000766f0000786f00007a6f0000946f000000ca9a3b
+    scrollPos: {x: 0, y: 127}
+    m_SelectedIDs: 9a720000
+    m_LastClickedID: 29338
+    m_ExpandedIDs: 000000006a7200006c7200006e72000070720000727200008e72000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -341,7 +341,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000766f0000786f00007a6f000000ca9a3b
+    m_ExpandedIDs: 000000006a7200006c7200006e7200007072000072720000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -366,8 +366,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 80a4faff
-    m_LastClickedInstanceID: -351104
+    m_SelectedInstanceIDs: 06f8ffff
+    m_LastClickedInstanceID: -2042
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -457,7 +457,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -351104
+  m_LastSelectedObjectID: -1812
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -769,9 +769,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -51.714912, y: 17.691853, z: -0.83124256}
+    m_Target: {x: -9.008678, y: 5.8078337, z: 42.80508}
     speed: 2
-    m_Value: {x: -51.714912, y: 17.691853, z: -0.83124256}
+    m_Value: {x: -9.008678, y: 5.8078337, z: 42.80508}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -818,13 +818,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.2462015, y: -0.4396856, z: -0.12661359, w: -0.85448086}
+    m_Target: {x: -0.05238541, y: -0.057764277, z: -0.003118237, w: 0.99700767}
     speed: 2
-    m_Value: {x: 0.24618833, y: -0.43966207, z: -0.1266068, w: -0.85443515}
+    m_Value: {x: -0.0523824, y: -0.057760958, z: -0.003118058, w: 0.9969504}
   m_Size:
-    m_Target: 10
+    m_Target: 6.277166
     speed: 2
-    m_Value: 10
+    m_Value: 6.277166
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -961,8 +961,8 @@ MonoBehaviour:
     y: 0
     width: 518
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 151
+    m_CachedPref: -560
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
