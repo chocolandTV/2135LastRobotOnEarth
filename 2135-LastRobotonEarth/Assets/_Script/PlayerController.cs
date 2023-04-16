@@ -10,15 +10,11 @@ public class PlayerController : MonoBehaviour
     // Player Vars
     private Rigidbody _rigidbody;
     [SerializeField]private float movementSpeed = 5.0f;
-    private Vector2 PlayerDirection;
     private Vector2 _moveInput;
     private Vector2 _lookInputDelta;
     private Vector2 _lookVector;
-    private Vector2 smoothDeltaPosition = Vector2.zero;
-    public Vector2 velocity = Vector2.zero;
-    public float magnitude = 0.25f;
     [SerializeField] private float rotateSpeed = 0.25f;
-    private bool isRecycling;
+    public bool isRecycling{get;set;}
    // TEST
     List<Vector2> test1Array = new List<Vector2>();
     List<Vector2> test2Array = new List<Vector2>();
@@ -27,8 +23,6 @@ public class PlayerController : MonoBehaviour
     // LOOK VARS
     [SerializeField] private float rotationPowerX = 3f;
     [SerializeField] private float rotationPowerY = 3f;
-    // [SerializeField] private float rotationLerp = 0.5f;
-    private Quaternion nextRotation;
     public Vector3 nextPosition;
     private Camera _camera;
     
@@ -71,25 +65,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate() {
        HandleInput();
        Move();
-    // Recycle();
+    
 
     }
-    [ContextMenu("Print Arrays")]
-    private void TestPrint()
-    {
-        Debug.Log( "Ar1Count: "+ test1Array.Count + " Ar2Count: " + test2Array.Count);
-        Vector2 Ar1Sum = Vector2.zero;
-        foreach (Vector2 item in test1Array)
-        {
-            Ar1Sum+= new Vector2 (Mathf.Abs(item.x),Mathf.Abs(item.y)) ;
-        }
-        Vector2 Ar2Sum = Vector2.zero;
-        foreach (Vector2 item in test2Array)
-        {
-            Ar2Sum+= new Vector2 (Mathf.Abs(item.x),Mathf.Abs(item.y)) ;
-        }
-        Debug.Log("Ar1Sum: " + Ar1Sum +  " - Ar2Sum: " + Ar2Sum);
-    }
+ 
     private void Move()
     {
         
@@ -142,13 +121,6 @@ public class PlayerController : MonoBehaviour
         followTransform.transform.localRotation*= Quaternion.AngleAxis(yRotChange,Vector3.up);
     }
     
-    private void Recycle()
-    {
-        if(isRecycling)
-        {
-
-        }
-    }
     private void OnLookInput(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -161,18 +133,7 @@ public class PlayerController : MonoBehaviour
             _lookInputDelta = Vector2.zero;
         }
     }
-    public Vector2 GetDelta()
-    {
-        
-        if (_lookInputDelta != null)
-        {
-            return _lookInputDelta;
-        }
-        else
-        {
-            return Vector2.zero;
-        }
-    }
+    
     private void OnMoveInput(InputAction.CallbackContext context)
     {
         if (context.performed)

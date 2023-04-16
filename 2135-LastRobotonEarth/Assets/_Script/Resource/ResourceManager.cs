@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
-    public static ResourceManager Instance;
+    public static ResourceManager Instance{get;set;}
     // ROCKET HOLDER
     public int GameRocketScraps { get; private set; }
      // PLAYER HOLDER
