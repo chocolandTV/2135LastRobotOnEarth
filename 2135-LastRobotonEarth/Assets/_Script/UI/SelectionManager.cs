@@ -4,26 +4,54 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
-    [SerializeField] private Material highlightMaterial;
-    // Start is called before the first frame update
-    void Start()
+    // 7:48
+    private Transform _selection;
+    private ISelectionResponse _selectionResponse;
+    private void Awake()
     {
+        _selectionResponse = GetComponent<ISelectionResponse>();
         
     }
-
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Debug.Log("Application is focussed");
+        }
+        else
+        {
+            Debug.Log("Application lost focus");
+        }
+    }
     // Update is called once per frame
     private void Update()
     {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (_selection != null)
+        {
+            _selectionResponse.OnDeselect(_selection);
+        }
+        // CREATING RAY
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Selection Determination
+        _selection = null;
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit))
         {
             var selection = hit.transform;
-            var selectionRenderer = selection.GetComponent<Renderer>();
-            if(selectionRenderer != null)
+            if (selection.CompareTag("Scrap"))
             {
-                selectionRenderer.material = highlightMaterial;
+                _selection = selection;
             }
         }
+        // END DEFINE
+        if (_selection != null)
+        {
+            _selectionResponse.OnSelect(_selection);
+        }
     }
+
 }
+
+
