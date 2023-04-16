@@ -1,17 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+
 public class ResourceSource : MonoBehaviour
 {
-    public enum ResourceType
-    {
-        Scrap,
-        Figures,
-        Tungsten,
-    }
-    public ResourceType type;
-    public int quantity{get; set;}
+    public int quantity;
     
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Recycler"))
