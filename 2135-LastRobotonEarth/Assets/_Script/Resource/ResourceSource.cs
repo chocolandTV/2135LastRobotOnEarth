@@ -20,7 +20,7 @@ public class ResourceSource : MonoBehaviour
                 }
                 ResourceManager.Instance.AddResourcePlayer(quantity);
                 // TEST 
-                VariableManager.Instance.AddTankCapacity(0.1f);
+                // VariableManager.Instance.AddTankCapacity(0.1f);
                 Destroy(gameObject);
             }
         }

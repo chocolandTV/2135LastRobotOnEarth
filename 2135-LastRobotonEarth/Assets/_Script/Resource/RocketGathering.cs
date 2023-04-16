@@ -17,7 +17,8 @@ public class RocketGathering : MonoBehaviour
             int holdScraps = ResourceManager.Instance.GamePlayerScraps;
             ResourceManager.Instance.RemovePlayerResource();
             ResourceManager.Instance.AddResourceRocket(holdScraps);
-            system.Emit(emitParams, holdScraps*10);
+            system.Emit(emitParams, holdScraps);
+            HUDManager.Instance.OnChangeScrapUI();
         }
     }
     
