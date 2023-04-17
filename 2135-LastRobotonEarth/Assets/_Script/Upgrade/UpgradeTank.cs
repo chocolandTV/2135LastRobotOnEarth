@@ -49,6 +49,7 @@ public class UpgradeTank : MonoBehaviour
         upgradeSettings.activeLevel = level;
         VariableManager.Instance.SetTankCapacity(upgradeSettings.multiplier[level]);
         UpgradeUIManager.Instance.UpdateUI();
+        HUDManager.Instance.OnChangeScrapUI();
         // SOUND 
         // ROBOT ANIMATION HAPPY 
     }

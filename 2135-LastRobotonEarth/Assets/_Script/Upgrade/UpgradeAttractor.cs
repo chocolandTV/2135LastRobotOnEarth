@@ -49,6 +49,7 @@ public class UpgradeAttractor : MonoBehaviour
         upgradeSettings.activeLevel = level;
         VariableManager.Instance.SetCollectingSpeed(upgradeSettings.multiplier[level]);
         UpgradeUIManager.Instance.UpdateUI();
+        HUDManager.Instance.OnChangeScrapUI();
         // SOUND 
         // ROBOT ANIMATION HAPPY 
     }

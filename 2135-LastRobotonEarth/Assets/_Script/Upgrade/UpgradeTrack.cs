@@ -49,6 +49,7 @@ public class UpgradeTrack : MonoBehaviour
         upgradeSettings.activeLevel = level;
         VariableManager.Instance.SetMovementMultiplier(upgradeSettings.multiplier[level]);
         UpgradeUIManager.Instance.UpdateUI();
+        HUDManager.Instance.OnChangeScrapUI();
         // SOUND 
         // ROBOT ANIMATION HAPPY 
     }

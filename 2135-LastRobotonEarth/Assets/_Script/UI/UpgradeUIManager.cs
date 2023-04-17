@@ -55,6 +55,11 @@ public class UpgradeUIManager : MonoBehaviour
     public void UpgradeStoreSetActive(bool value)
     {
         UpgradeStoreUI.SetActive(value);
+        UpgradeStoreCursorActive(value);
+        
+    }
+    public void UpgradeStoreCursorActive(bool value)
+    {
         if (value)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -73,6 +78,7 @@ public class UpgradeUIManager : MonoBehaviour
     public void ExitButton()
     {
         UpgradeStoreSetActive(false);
+        
     }
     public void ErrorMessage_Hide()
     {

@@ -49,6 +49,7 @@ public class UpgradeThruster : MonoBehaviour
         upgradeSettings.activeLevel = level;
         VariableManager.Instance.SetThrusterPower(upgradeSettings.multiplier[level]);
         UpgradeUIManager.Instance.UpdateUI();
+        HUDManager.Instance.OnChangeScrapUI();
         // SOUND 
         // ROBOT ANIMATION HAPPY 
     }

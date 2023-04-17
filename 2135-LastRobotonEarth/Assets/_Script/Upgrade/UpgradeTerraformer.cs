@@ -49,6 +49,7 @@ public class UpgradeTerraformer : MonoBehaviour
         upgradeSettings.activeLevel = level;
         VariableManager.Instance.SetTerraformerMissionProgress(upgradeSettings.multiplier[level]);
         UpgradeUIManager.Instance.UpdateUI();
+        HUDManager.Instance.OnChangeScrapUI();
         // SOUND 
         // ROBOT ANIMATION HAPPY 
     }
