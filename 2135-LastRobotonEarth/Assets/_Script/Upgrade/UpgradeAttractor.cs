@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class UpgradeTrack : MonoBehaviour
-{
 
-    // UPGRADE 01  Tracks IMPROVE MOVEMENT SPEED
+public class UpgradeAttractor : MonoBehaviour
+{
+  // UPGRADE 01  Tracks IMPROVE MOVEMENT SPEED
     // SCRIPTABLEOBJECT  COSTS AND MULTIPLIER BALANCER
     [SerializeField] private UpgradeSettings upgradeSettings;
     
     // END SCRIPTABLEOBJECTS
     // Start is called before the first frame update
-    private string upgradeName = "Upgrade Tracks";
+    private string upgradeName = "Upgrade Attractor";
     private int level = 1;
     private int maxlevel = 10;
 
@@ -47,11 +47,10 @@ public class UpgradeTrack : MonoBehaviour
     {
         level++;
         upgradeSettings.activeLevel = level;
-        VariableManager.Instance.SetMovementMultiplier(upgradeSettings.multiplier[level]);
+        VariableManager.Instance.SetCollectingSpeed(upgradeSettings.multiplier[level]);
         UpgradeUIManager.Instance.UpdateUI();
         // SOUND 
         // ROBOT ANIMATION HAPPY 
     }
     
-
 }

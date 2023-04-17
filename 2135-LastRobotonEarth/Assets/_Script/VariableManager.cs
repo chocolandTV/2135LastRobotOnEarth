@@ -6,6 +6,7 @@ public class VariableManager : MonoBehaviour
 {
     
     public static VariableManager Instance;
+    [SerializeField] private GameObject terraformer;
     [field: SerializeField] public float Game_movement_multiplier { get; private set; }
     [field: SerializeField] public float Game_collecting_speed { get; private set; }
     [field: SerializeField] public float Game_thruster_power { get; private set; }
@@ -31,6 +32,11 @@ public class VariableManager : MonoBehaviour
     public void SetTerraformerMissionProgress(float value)
     {
         Game_Terraformer_mission = value;
+        terraformer.transform.localScale *= value;
+        // SCALE TERRAFORMER 
+        // IF 50% MESSAGE HUD  GOOD JOB KEEP COLLECTING
+        // IF 100% MESSAGE HUD FINISHED WIN AND CUTsCENE 
+
     }
     private void Awake() {
         if(Instance != null)

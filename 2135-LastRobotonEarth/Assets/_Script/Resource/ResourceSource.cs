@@ -5,25 +5,46 @@ using TMPro;
 public class ResourceSource : MonoBehaviour
 {
     public int quantity;
-    [SerializeField]private TextMeshProUGUI text;
-    private void Start() {
+    private int maxQuantity;
+    [SerializeField] private new ParticleSystem particleSystem;
+    [SerializeField] private TextMeshProUGUI text;
+    ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
+    private bool isExtracting = false;
+    private void Start()
+    {
         text.text = "+ " + quantity;
+        maxQuantity = quantity;
     }
-    private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Recycler"))
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Attractor"))
         {
-            if(ResourceManager.Instance.isSpaceInStorage())
-            // ADD RESOURCE
-            {    for (int i = 100; i > 1; i--)
-                {
-                    gameObject.transform.localScale  = (Vector3.one * i/100);
-                }
-                ResourceManager.Instance.AddResourcePlayer(quantity);
-                // TEST 
-                // VariableManager.Instance.AddTankCapacity(0.1f);
-                Destroy(gameObject);
-            }
+           
+            StartCoroutine(Extract());
+
         }
     }
+    IEnumerator Extract()
+    {
+        while (ResourceManager.Instance.isSpaceInStorage() && quantity > 0 && PlayerController.Instance.isRecycling)
+        {
+            gameObject.transform.localScale *= (0.9f * VariableManager.Instance.Game_collecting_speed);
+            particleSystem.Emit(emitParams, (int)(gameObject.transform.localScale.x * 100));
+            yield return new WaitForSeconds(1.0f / VariableManager.Instance.Game_collecting_speed);
+            if (ResourceManager.Instance.isSpaceInStorage())
+            // ADD RESOURCE
+            {
+                ResourceManager.Instance.AddResourcePlayer(1);
+                quantity--;
+                text.text = "+ " + quantity;
+
+            }
+        }
+        if(quantity <=0)
+            Destroy(gameObject);
+
+    }
+
+
 
 }
