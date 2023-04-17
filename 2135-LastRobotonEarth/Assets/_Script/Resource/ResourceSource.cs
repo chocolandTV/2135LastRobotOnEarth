@@ -17,7 +17,7 @@ public class ResourceSource : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Attractor"))
+        if (other.CompareTag("Attractor")&& PlayerController.Instance.isRecycling)
         {
            
             StartCoroutine(Extract());
@@ -27,10 +27,10 @@ public class ResourceSource : MonoBehaviour
     IEnumerator Extract()
     {
         while (ResourceManager.Instance.isSpaceInStorage() && quantity > 0 && PlayerController.Instance.isRecycling)
-        {
+        {   
+            Debug.Log("Still in coroutine");
             gameObject.transform.localScale *= (0.9f * VariableManager.Instance.Game_collecting_speed);
-            particleSystem.Emit(emitParams, (int)(gameObject.transform.localScale.x * 100));
-            yield return new WaitForSeconds(1.0f / VariableManager.Instance.Game_collecting_speed);
+            particleSystem.Emit(emitParams, quantity*20);
             if (ResourceManager.Instance.isSpaceInStorage())
             // ADD RESOURCE
             {
@@ -39,6 +39,7 @@ public class ResourceSource : MonoBehaviour
                 text.text = "+ " + quantity;
 
             }
+            yield return new WaitForSeconds(1.0f / VariableManager.Instance.Game_collecting_speed);
         }
         if(quantity <=0)
             Destroy(gameObject);

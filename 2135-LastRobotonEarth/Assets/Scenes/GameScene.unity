@@ -3395,6 +3395,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6074790372619548756}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1603728586 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6074790373858874583, guid: bf683efd3083fb64ca4c77b8f401c27c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6074790372619548756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1623664260
 GameObject:
   m_ObjectHideFlags: 0
@@ -4338,6 +4344,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2042252226 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 430920764261640919, guid: 9eb498ce64495ea4681eb9225ea5021e,
+    type: 3}
+  m_PrefabInstance: {fileID: 430920762809770261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2057596133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7275,6 +7287,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6074790372964213642, guid: bf683efd3083fb64ca4c77b8f401c27c,
+        type: 3}
+      propertyPath: collider
+      value: 
+      objectReference: {fileID: 1603728586}
     - target: {fileID: 6074790372964213646, guid: bf683efd3083fb64ca4c77b8f401c27c,
         type: 3}
       propertyPath: m_Name
@@ -7290,6 +7307,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Attractor
       objectReference: {fileID: 0}
+    - target: {fileID: 6074790373858874583, guid: bf683efd3083fb64ca4c77b8f401c27c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf683efd3083fb64ca4c77b8f401c27c, type: 3}
 --- !u!1001 &6181957525740700740
@@ -7304,6 +7326,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameVariables
       objectReference: {fileID: 0}
+    - target: {fileID: 6181957525560315669, guid: 4980adda63d2b28488da01f1c9b6e376,
+        type: 3}
+      propertyPath: terraformer
+      value: 
+      objectReference: {fileID: 2042252226}
     - target: {fileID: 6181957525560315670, guid: 4980adda63d2b28488da01f1c9b6e376,
         type: 3}
       propertyPath: m_RootOrder

@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private Camera _camera;
     // UPGRADE STORE BOOL
     public bool isUpgradable{get;set;} = false;
+    // ATTRACTING COLLIDER ENABLE
+    [SerializeField] private new Collider collider;
 
     private void Awake() {
         if(Instance != null)
@@ -166,10 +168,12 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             isRecycling= true;
+            collider.enabled=true;
         }
         if (context.canceled)
         {
             isRecycling = false;
+            collider.enabled=false;
         }
     }
     private void OnDestroy()
