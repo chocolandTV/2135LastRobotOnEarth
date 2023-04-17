@@ -9,6 +9,7 @@ public class OnEnterUpgradeStore : MonoBehaviour
         {
             HUDManager.Instance.OnUpgradeStoreChange(true);
             HUDManager.Instance.OnCrossHairChange(false);
+            PlayerController.Instance.isUpgradable= true;
         }
     }
     private void OnTriggerExit(Collider other) {
@@ -16,6 +17,7 @@ public class OnEnterUpgradeStore : MonoBehaviour
         {
             HUDManager.Instance.OnUpgradeStoreChange(false);
             HUDManager.Instance.OnCrossHairChange(true);
+            PlayerController.Instance.isUpgradable= false;
         }
     }
 }

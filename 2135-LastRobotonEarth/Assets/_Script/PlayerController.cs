@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotationPowerY = 3f;
     public Vector3 nextPosition;
     private Camera _camera;
-    
+    // UPGRADE STORE BOOL
+    public bool isUpgradable{get;set;} = false;
 
     private void Awake() {
         if(Instance != null)
@@ -148,11 +149,13 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             // INTERACT Set Object Parent RobotHand
-            if(HUDManager.Instance.isUpgradestoreActive())
+            if(HUDManager.Instance.isUpgradestoreActive() && isUpgradable)
             {
                 // Disable
                 HUDManager.Instance.OnUpgradeStoreChange(false);
                 HUDManager.Instance.OnCrossHairChange(true);
+                // START UPGRADE SYSTEM
+                UpgradeUIManager.Instance.UpgradeStoreSetActive(true); 
                 //  HERE START ROBOT UPGRADE EVENT
             }
         }
