@@ -10,27 +10,27 @@ public class VariableManager : MonoBehaviour
     [field: SerializeField] public float Game_collecting_speed { get; private set; }
     [field: SerializeField] public float Game_thruster_power { get; private set; }
     [field: SerializeField] public float Game_tank_capacity_multiplier { get; private set; }
-    [field: SerializeField] public float Game_robot_hull_multiplier { get; private set; }
+    [field: SerializeField] public float Game_Terraformer_mission { get; private set; }
     
-    public void AddMovementMultiplier(float value)
+    public void SetMovementMultiplier(float value)
     {
-        Game_movement_multiplier += value;
+        Game_movement_multiplier = value;
     }
-    public void AddCollectingSpeed(float value)
+    public void SetCollectingSpeed(float value)
     {
-        Game_collecting_speed += value;
+        Game_collecting_speed = value;
     }
-    public void AddThrusterPower(float value)
+    public void SetThrusterPower(float value)
     {
-        Game_thruster_power += value;
+        Game_thruster_power = value;
     }
-    public void AddTankCapacity(float value)
+    public void SetTankCapacity(float value)
     {
-        Game_tank_capacity_multiplier += value;
+        Game_tank_capacity_multiplier = value;
     }
-    public void AddRobotHull(float value)
+    public void SetTerraformerMissionProgress(float value)
     {
-        Game_robot_hull_multiplier += value;
+        Game_Terraformer_mission = value;
     }
     private void Awake() {
         if(Instance != null)
