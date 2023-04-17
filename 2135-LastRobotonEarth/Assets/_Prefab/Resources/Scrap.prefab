@@ -4945,7 +4945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quantity: 5
-  particleSystem: {fileID: 0}
+  particleSystem: {fileID: 513377105}
   text: {fileID: 3490989917664714815}
 --- !u!114 &49405451253974516
 MonoBehaviour:
