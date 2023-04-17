@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0f17c16299fccaf459b07267af4d80ef
+guid: 899b4017b355bcb4e90f11b81a6f8be2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,33 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Eyes
-    second: {fileID: 2100000, guid: 66c3b1c8565524e4eab6fd2e60d17a2a, type: 2}
+      name: DarkHull
+    second: {fileID: 2100000, guid: 45f851c0f37f22b429829ca6b3d387e6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Light
-    second: {fileID: 2100000, guid: 66cf617167187cf4caaa1ab3fd88fcf8, type: 2}
+      name: Generators
+    second: {fileID: 2100000, guid: 16398b6e2075cac4d9927d3fecad31e8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Metall
-    second: {fileID: 2100000, guid: 6ec44109073c8cc4c940ac7ae1360a38, type: 2}
+      name: Hull
+    second: {fileID: 2100000, guid: 08493cddb5c19574c879fa25a16b50a3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MetallDeep
-    second: {fileID: 2100000, guid: 3bd7f12ebc69be04d8cf73f65e8fca86, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MetallParts
-    second: {fileID: 2100000, guid: 7067d3f40b6a11c44aeb32def09a138f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TrailsTexture
-    second: {fileID: 2100000, guid: 90c95ad7763d3354d934a759167f7288, type: 2}
+      name: collectors
+    second: {fileID: 2100000, guid: 178eee8a3d9d7094a8194b619d7a9798, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -72,8 +62,8 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
