@@ -42,6 +42,7 @@ public class UpgradeUIManager : MonoBehaviour
             {
                 if(x.activeLevel >= i+1)
                     levelProgressIcons[i*counter].texture = recycleActive;
+                    levelProgressIcons[i*counter].color  = Color.HSVToRGB(180f,100f, 100f);
             }
             counter ++;
         }
