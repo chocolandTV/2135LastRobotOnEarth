@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
-
     // Player Vars
     private Rigidbody _rigidbody;
-    [SerializeField] private float movementSpeed = 5.0f; // Upgrade Multiplier 1; 10
+    [SerializeField] private float movementSpeed = 12.5f; // Upgrade Multiplier 1; 10
+    private float UpgradedMovementSpeed => movementSpeed * VariableManager.Instance.Game_movement_multiplier;
     private Vector2 _moveInput;
     private Vector2 _lookInputDelta;
     private Vector2 _lookVector;
@@ -23,9 +23,6 @@ public class PlayerController : MonoBehaviour
     private Camera _camera;
     // UPGRADE STORE BOOL
     public bool isUpgrading { get; set; } = false;
-    // ATTRACTING COLLIDER ENABLE
-    [SerializeField] private new Collider collider;
-
     private void Awake()
     {
         if (Instance != null)
@@ -91,16 +88,12 @@ public class PlayerController : MonoBehaviour
     {
         HandleInput();
         Move();
-
-
     }
 
     private void Move()
     {
-
-        float step = (movementSpeed * VariableManager.Instance.Game_movement_multiplier) * Time.fixedDeltaTime;
+        float step = (UpgradedMovementSpeed * VariableManager.Instance.Game_movement_multiplier) * Time.fixedDeltaTime;
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, step);
-
     }
     private void HandleInput()
     {
@@ -133,15 +126,11 @@ public class PlayerController : MonoBehaviour
         }
         //CHARACTER ROTATION LERP
 
-        float _moveSpeed = movementSpeed * Time.fixedDeltaTime;
+        float _moveSpeed = UpgradedMovementSpeed * Time.fixedDeltaTime;
         Vector3 position = (transform.forward * _moveInput.y * _moveSpeed) + (transform.right * _moveInput.x * _moveSpeed);
         nextPosition = transform.position + position;
         Quaternion oldrotation = transform.rotation;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0), rotateSpeed * Time.fixedDeltaTime);
-        //Set the player rotation based on the look transform
-
-        //reset the y rotation of the look transform
-
         float xRotChange = oldrotation.eulerAngles.x - transform.rotation.eulerAngles.x;
         float yRotChange = oldrotation.eulerAngles.y - transform.rotation.eulerAngles.y;
         followTransform.transform.localRotation *= Quaternion.AngleAxis(yRotChange, Vector3.up);

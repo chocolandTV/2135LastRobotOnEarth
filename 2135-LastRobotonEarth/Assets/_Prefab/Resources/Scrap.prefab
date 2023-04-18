@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0, b: 0, a: 1}
+      maxColor: {r: 0, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3796,9 +3796,9 @@ ParticleSystem:
     enabled: 1
     serializedVersion: 2
     inside: 2
-    outside: 0
+    outside: 2
     enter: 1
-    exit: 0
+    exit: 2
     colliderQueryMode: 0
     radiusScale: 1
     primitives:
@@ -4846,7 +4846,7 @@ Transform:
   m_GameObject: {fileID: 2567191054088760324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.04, z: 34.82}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6160809103387130512}
@@ -4927,7 +4927,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2567191054088760324}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -4944,7 +4944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb5ea2c394e13f48aec4d19438f1d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantity: 5
+  quantity: 20
   particleSystem: {fileID: 513377105}
   text: {fileID: 3490989917664714815}
 --- !u!114 &49405451253974516
