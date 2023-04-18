@@ -9,7 +9,7 @@ public class ResourceSource : MonoBehaviour
     [SerializeField] private new ParticleSystem particleSystem;
     [SerializeField] private TextMeshProUGUI text;
     ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
-    private bool isExtracting = false;
+    
     private void Start()
     {
         text.text = "+ " + quantity;
@@ -17,7 +17,7 @@ public class ResourceSource : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Attractor")&& PlayerController.Instance.isRecycling)
+        if (other.CompareTag("Attractor"))
         {
            
             StartCoroutine(Extract());
@@ -26,7 +26,7 @@ public class ResourceSource : MonoBehaviour
     }
     IEnumerator Extract()
     {
-        while (ResourceManager.Instance.isSpaceInStorage() && quantity > 0 && PlayerController.Instance.isRecycling)
+        while (ResourceManager.Instance.isSpaceInStorage() && quantity > 0)
         {   
             Debug.Log("Still in coroutine");
             gameObject.transform.localScale *= (0.9f * VariableManager.Instance.Game_collecting_speed);

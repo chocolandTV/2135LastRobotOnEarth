@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 _lookInputDelta;
     private Vector2 _lookVector;
     [SerializeField] private float rotateSpeed = 0.25f;
-    public bool isRecycling{get;set;}
     [SerializeField] private Transform followTransform;
 
     // LOOK VARS
@@ -23,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 nextPosition;
     private Camera _camera;
     // UPGRADE STORE BOOL
-    public bool isUpgradable{get;set;} = false;
+    public bool isUpgrading{get;set;} = false;
     // ATTRACTING COLLIDER ENABLE
     [SerializeField] private new Collider collider;
 
@@ -41,7 +40,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isRecycling = false;
+       
         _lookVector = Vector2.zero;
         _camera = Camera.main;
         
@@ -52,14 +51,24 @@ public class PlayerController : MonoBehaviour
         InputManager.OnLook += OnLookInput;
         InputManager.OnMove += OnMoveInput;
         InputManager.OnInteract += OnInteractInput;
-        InputManager.OnRecycle += OnRecycleInput;
+        
     }
      private void UnsubscribeFromInput()
     {
         InputManager.OnLook -= OnLookInput;
         InputManager.OnMove -= OnMoveInput;
         InputManager.OnInteract -= OnInteractInput;
-        InputManager.OnRecycle -= OnRecycleInput;
+        
+    }
+    public void DisableControl(bool value)
+    {
+        if(value)
+        {
+            UnsubscribeFromInput();
+        }else if (!value)
+        {
+            SubscribeToInput();
+        }
     }
     // Update is called once per frame
     private void FixedUpdate() {
@@ -150,34 +159,18 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            // INTERACT Set Object Parent RobotHand
-            if(HUDManager.Instance.isUpgradestoreActive() && isUpgradable)
+            if(!isUpgrading)
             {
-                UpgradeUIManager.Instance.UpgradeStoreSetActive(false);
-                // Disable
-                HUDManager.Instance.OnUpgradeStoreChange(false);
-                HUDManager.Instance.OnCrossHairChange(true);
-                // START UPGRADE SYSTEM
-                UpgradeUIManager.Instance.UpgradeStoreCursorActive(true); 
-                //  HERE START ROBOT UPGRADE EVENT
+                isUpgrading = true;
+                UnsubscribeFromInput();
+                UpgradeUIManager.Instance.UpgradeStoreSetActive(true);
+                HUDManager.Instance.OnCrossHairChange(false);
             }
         }
         
         
     }
-    private void OnRecycleInput(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            isRecycling= true;
-            collider.enabled=true;
-        }
-        if (context.canceled)
-        {
-            isRecycling = false;
-            collider.enabled=false;
-        }
-    }
+    
     private void OnDestroy()
     {
         if (Instance == this) Instance = null;

@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
     public static event Action<CallbackContext> OnMove;
     public static event Action<CallbackContext> OnInteract;
     public static event Action<CallbackContext> OnPauseGame;
-    public static event Action<CallbackContext> OnRecycle;
+   
     private void OnShemeChanged(PlayerInput playerInput)
     {
         OnControlShemeChanged?.Invoke();
@@ -50,10 +50,7 @@ public class InputManager : MonoBehaviour
     {
         OnPauseGame?.Invoke(context);
     }
-    private void OnRecycleInput(CallbackContext context)
-    {
-        OnRecycle?.Invoke(context);
-    }
+    
 
     /// SUBSCRIBE TO INPUT
     private void SubscribeToInput()
@@ -73,10 +70,6 @@ public class InputManager : MonoBehaviour
         _playerInput.actions["PauseGame"].started += OnPauseGameInput;
         _playerInput.actions["PauseGame"].performed += OnPauseGameInput;
         _playerInput.actions["PauseGame"].canceled += OnPauseGameInput;
-
-        _playerInput.actions["Recycle"].started += OnRecycleInput;
-        _playerInput.actions["Recycle"].performed += OnRecycleInput;
-        _playerInput.actions["Recycle"].canceled += OnRecycleInput;
 
 
     }
@@ -98,9 +91,7 @@ public class InputManager : MonoBehaviour
         _playerInput.actions["PauseGame"].performed -= OnPauseGameInput;
         _playerInput.actions["PauseGame"].canceled -= OnPauseGameInput;
 
-        _playerInput.actions["Recycle"].started -= OnRecycleInput;
-        _playerInput.actions["Recycle"].performed -= OnRecycleInput;
-        _playerInput.actions["Recycle"].canceled -= OnRecycleInput;
+
     }
     private void OnDestroy()
     {

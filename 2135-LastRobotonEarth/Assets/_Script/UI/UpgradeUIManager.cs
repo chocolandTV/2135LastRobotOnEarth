@@ -33,7 +33,8 @@ public class UpgradeUIManager : MonoBehaviour
         UpdateUI();
     }
     public void UpdateUI()
-    {   int counter = 0;
+    {   
+        int counter = 0;
         foreach (UpgradeSettings x in upgradesSettings)
         {
             CostTexts[counter].text = x.costs[x.activeLevel].ToString();
@@ -42,7 +43,7 @@ public class UpgradeUIManager : MonoBehaviour
             {
                 if(x.activeLevel >= i+1)
                     levelProgressIcons[i*counter].texture = recycleActive;
-                    levelProgressIcons[i*counter].color  = Color.HSVToRGB(180f,100f, 100f);
+                    levelProgressIcons[i*counter].color = Color.HSVToRGB(180f,100f, 100f);
             }
             counter ++;
         }
@@ -78,7 +79,8 @@ public class UpgradeUIManager : MonoBehaviour
     public void ExitButton()
     {
         UpgradeStoreSetActive(false);
-        
+        PlayerController.Instance.isUpgrading = true;
+        PlayerController.Instance.DisableControl(false);
     }
     public void ErrorMessage_Hide()
     {
