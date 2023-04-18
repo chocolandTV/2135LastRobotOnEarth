@@ -6,7 +6,7 @@ public class ResourceSource : MonoBehaviour
 {
     public int quantity;
     private int maxQuantity;
-    private int test= 0;
+    
     
     [SerializeField] private new ParticleSystem particleSystem;
     [SerializeField] private TextMeshProUGUI text;
@@ -23,15 +23,15 @@ public class ResourceSource : MonoBehaviour
         {
            
             this.StartCoroutine(Extract());
-            test++;
-            Debug.Log("Start Coroutine" + test + "OBEJCT" + other.gameObject,other);
+           
+            // Debug.Log("Start Coroutine" + test + "OBEJCT" + other.gameObject,other);
         }
     }
     private void OnTriggerExit(Collider other) {
         if(other.CompareTag("Attractor"))
         {
             CancelInvoke();
-            Debug.Log("STOP COROUTINE");
+            // Debug.Log("STOP COROUTINE");
         }
     }
     IEnumerator Extract()
@@ -41,7 +41,7 @@ public class ResourceSource : MonoBehaviour
         {   
             
             // gameObject.transform.localScale *= (0.9f * VariableManager.Instance.Game_collecting_speed);
-            particleSystem.Emit(emitParams, quantity*20);
+            particleSystem.Emit(emitParams, quantity);
             if (ResourceManager.Instance.isSpaceInStorage())
             // ADD RESOURCE
             {
