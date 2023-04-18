@@ -16,6 +16,8 @@ public class UpgradeUIManager : MonoBehaviour
     [SerializeField] private RawImage[] levelProgressIcons;
     [SerializeField] private Texture2D recycleBG;
     [SerializeField] private Texture2D recycleActive;
+    /// BUTTON RESET COLOR 
+    [SerializeField] private Image[] upgradeButtonColorReset;
     public static UpgradeUIManager Instance;
     private void Awake()
     {
@@ -56,36 +58,20 @@ public class UpgradeUIManager : MonoBehaviour
     public void UpgradeStoreSetActive(bool value)
     {
         UpgradeStoreUI.SetActive(value);
-        UpgradeStoreCursorActive(value);
-        
     }
-    public void UpgradeStoreCursorActive(bool value)
-    {
-        if (value)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            // ENABLE MOUSE
-            // DISABLE MOVEMENT & LOOK
-
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            // ENABLE MOVEMENT & LOOK
-        }
-    }
+    
     public void ExitButton()
     {
-        UpgradeStoreSetActive(false);
-        PlayerController.Instance.isUpgrading = true;
-        PlayerController.Instance.DisableControl(false);
+        PlayerController.Instance.ChangeControlUpgrade(false);
     }
     public void ErrorMessage_Hide()
     {
         error_NotEnoughScrap.SetActive(false);
         Error_MaxLevel.SetActive(false);
+        foreach (Image x in upgradeButtonColorReset)
+        {
+            x.color= Color.white;
+        }
     }
     public void ErrorMessage_NotEnoughScrap()
     {

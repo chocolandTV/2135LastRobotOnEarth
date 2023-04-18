@@ -5,11 +5,11 @@ using System;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController Instance { get;private set;}
+    public static PlayerController Instance { get; private set; }
 
     // Player Vars
     private Rigidbody _rigidbody;
-    [SerializeField]private float movementSpeed = 5.0f; // Upgrade Multiplier 1; 10
+    [SerializeField] private float movementSpeed = 5.0f; // Upgrade Multiplier 1; 10
     private Vector2 _moveInput;
     private Vector2 _lookInputDelta;
     private Vector2 _lookVector;
@@ -22,12 +22,13 @@ public class PlayerController : MonoBehaviour
     public Vector3 nextPosition;
     private Camera _camera;
     // UPGRADE STORE BOOL
-    public bool isUpgrading{get;set;} = false;
+    public bool isUpgrading { get; set; } = false;
     // ATTRACTING COLLIDER ENABLE
     [SerializeField] private new Collider collider;
 
-    private void Awake() {
-        if(Instance != null)
+    private void Awake()
+    {
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -40,10 +41,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
         _lookVector = Vector2.zero;
         _camera = Camera.main;
-        
+
     }
 
     private void SubscribeToInput()
@@ -51,46 +52,62 @@ public class PlayerController : MonoBehaviour
         InputManager.OnLook += OnLookInput;
         InputManager.OnMove += OnMoveInput;
         InputManager.OnInteract += OnInteractInput;
-        
+
     }
-     private void UnsubscribeFromInput()
+    private void UnsubscribeFromInput()
     {
         InputManager.OnLook -= OnLookInput;
         InputManager.OnMove -= OnMoveInput;
         InputManager.OnInteract -= OnInteractInput;
-        
+
     }
-    public void DisableControl(bool value)
+    public void ChangeControlUpgrade(bool value)
     {
-        if(value)
+        if (value) // UPGRADE STORE ON
         {
-            UnsubscribeFromInput();
-        }else if (!value)
+            InputManager.OnLook -= OnLookInput;
+            InputManager.OnMove -= OnMoveInput;
+            InputManager.OnInteract -= OnInteractInput;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            UpgradeUIManager.Instance.UpgradeStoreSetActive(true);
+            HUDManager.Instance.OnCrossHairChange(false);
+            
+        }
+        else if (!value) // UPGRADE STORE OFF
         {
-            SubscribeToInput();
+            InputManager.OnLook += OnLookInput;
+            InputManager.OnMove += OnMoveInput;
+            InputManager.OnInteract += OnInteractInput;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            UpgradeUIManager.Instance.UpgradeStoreSetActive(false);
+            PlayerController.Instance.isUpgrading = false;
+            HUDManager.Instance.OnCrossHairChange(true);
         }
     }
     // Update is called once per frame
-    private void FixedUpdate() {
-       HandleInput();
-       Move();
-    
+    private void FixedUpdate()
+    {
+        HandleInput();
+        Move();
+
 
     }
- 
+
     private void Move()
     {
-        
-        float step = (movementSpeed* VariableManager.Instance.Game_movement_multiplier)* Time.fixedDeltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, nextPosition,step);
-        
+
+        float step = (movementSpeed * VariableManager.Instance.Game_movement_multiplier) * Time.fixedDeltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, nextPosition, step);
+
     }
     private void HandleInput()
     {
         //Rotate the Follow Target transform based on the input
-        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.x * rotationPowerX* Time.fixedDeltaTime, Vector3.up);
+        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.x * rotationPowerX * Time.fixedDeltaTime, Vector3.up);
 
-        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.y * rotationPowerY *Time.fixedDeltaTime, Vector3.right);
+        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.y * rotationPowerY * Time.fixedDeltaTime, Vector3.right);
         _lookInputDelta = Vector2.zero;
         var angles = followTransform.transform.localEulerAngles;
         angles.z = 0;
@@ -102,47 +119,47 @@ public class PlayerController : MonoBehaviour
         {
             angles.x = 340;
         }
-        else if(angle < 180 && angle > 40)
+        else if (angle < 180 && angle > 40)
         {
             angles.x = 40;
         }
         followTransform.transform.localEulerAngles = angles;
         // CAMERA ROTATION DONE
         //  IF NO INPUT  -> FREE LOOK
-        if (_moveInput.x == 0 && _moveInput.y == 0) 
-        {   
+        if (_moveInput.x == 0 && _moveInput.y == 0)
+        {
             nextPosition = transform.position;
-            return; 
+            return;
         }
         //CHARACTER ROTATION LERP
 
         float _moveSpeed = movementSpeed * Time.fixedDeltaTime;
         Vector3 position = (transform.forward * _moveInput.y * _moveSpeed) + (transform.right * _moveInput.x * _moveSpeed);
-        nextPosition = transform.position + position;        
+        nextPosition = transform.position + position;
         Quaternion oldrotation = transform.rotation;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0), rotateSpeed*Time.fixedDeltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, followTransform.transform.rotation.eulerAngles.y, 0), rotateSpeed * Time.fixedDeltaTime);
         //Set the player rotation based on the look transform
-        
+
         //reset the y rotation of the look transform
-        
+
         float xRotChange = oldrotation.eulerAngles.x - transform.rotation.eulerAngles.x;
         float yRotChange = oldrotation.eulerAngles.y - transform.rotation.eulerAngles.y;
-        followTransform.transform.localRotation*= Quaternion.AngleAxis(yRotChange,Vector3.up);
+        followTransform.transform.localRotation *= Quaternion.AngleAxis(yRotChange, Vector3.up);
     }
-    
+
     private void OnLookInput(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             _lookInputDelta += context.ReadValue<Vector2>();
-            
+
         }
         else if (context.canceled)
         {
             _lookInputDelta = Vector2.zero;
         }
     }
-    
+
     private void OnMoveInput(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -159,18 +176,17 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            if(!isUpgrading)
+            if (!isUpgrading)
             {
                 isUpgrading = true;
-                UnsubscribeFromInput();
-                UpgradeUIManager.Instance.UpgradeStoreSetActive(true);
-                HUDManager.Instance.OnCrossHairChange(false);
+                ChangeControlUpgrade(true);
+                
             }
         }
-        
-        
+
+
     }
-    
+
     private void OnDestroy()
     {
         if (Instance == this) Instance = null;
