@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class BigScrapBang : MonoBehaviour
 {
-    [SerializeField] private GameObject scrap;
+    // [SerializeField] private GameObject scrap;
     [SerializeField] private ParticleSystem emit01;
     [SerializeField] private ParticleSystem emit02;
+    [SerializeField]private GameVariables gameVariables;
+    private ScrapContainer scrapContainer;
+    private void Start() {
+        GetComponent<ScrapContainer>();
+    }
     
     ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
     public static void RemoveObjectFromAnimator(GameObject gameObject, Animator animator)
@@ -17,7 +22,7 @@ public class BigScrapBang : MonoBehaviour
 
             float playbackTime = animator.playbackTime;
             
-            animator.Rebind ();
+            animator.Rebind();
             
             animator.playbackTime = playbackTime;
 
@@ -27,10 +32,12 @@ public class BigScrapBang : MonoBehaviour
         if(other.CompareTag("Ground"))
         {
             // INSTANTIATE SCRAP RANDOM
-            for (int i = 0; i < Random.Range(10,30); i++)
+            for (int i = 0; i < Random.Range(1,gameVariables.SpawninMaxObjects); i++)
             {
-                Instantiate(scrap, transform.position,Quaternion.identity);
-                
+                GameObject  obj = Instantiate(scrapContainer.GetRandomScrapObject(), transform.position,Quaternion.identity);
+                int scale = Random.Range(1,10);
+                obj.transform.localScale=(Vector3.one *scale);
+                obj.GetComponent<ResourceSource>().quantity = Random.Range(gameVariables.SpawningQuantity.x*scale,gameVariables.SpawningQuantity.y*scale);
             }
             emit01.Emit(emitParams, 5);
             emit02.Emit(emitParams, 30);

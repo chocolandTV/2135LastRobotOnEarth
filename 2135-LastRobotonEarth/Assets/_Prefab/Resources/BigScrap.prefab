@@ -4884,6 +4884,7 @@ GameObject:
   - component: {fileID: 6285362406591310404}
   - component: {fileID: 1377628800813203207}
   - component: {fileID: 8021634088966339600}
+  - component: {fileID: 9005196373675660598}
   - component: {fileID: 473198208}
   m_Layer: 0
   m_Name: BigScrap
@@ -5001,6 +5002,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9005196373675660598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2959010853505356159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efeb8063349d4414eb14870a872f5152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScrapObjects:
+  - {fileID: 7484773948547947413, guid: 4fc76e02612ece846a6f1c99f55fd8c8, type: 3}
+  - {fileID: 4971500707325136153, guid: 64ed4f93f99b674408ba26c1710d6ab3, type: 3}
+  - {fileID: 6140060883578256856, guid: 2e276a4bf7f610547afe4b76a0428ef0, type: 3}
+  - {fileID: 7445216068868507655, guid: bbea606a6a301434d95f76e11f653c6c, type: 3}
+  - {fileID: 362986628687297792, guid: b651b8eccd4eb7b4f8e1ac54cf423fb3, type: 3}
+  - {fileID: 8069477275110593843, guid: d8abf8e2c52b40d4baea9078d38030de, type: 3}
+  - {fileID: 5828962302787069948, guid: fc5b7c8dc2459df459f9b3f5be9d6d1c, type: 3}
+  - {fileID: 2727699923085958869, guid: 9591469a1ef30db49990365b90445c9f, type: 3}
+  - {fileID: 8061067053871356638, guid: 1d4bb5352537bbd439ee80a04c6be50f, type: 3}
+  - {fileID: 6137062444682292245, guid: e9838d11bda591046989405009918ae4, type: 3}
+  - {fileID: 7326425645966335153, guid: f1f0924b69be29d4790206c4fb1a8b79, type: 3}
+  - {fileID: 4878044993305517449, guid: ea0ecc4887ebb0b46ba192a99779d038, type: 3}
 --- !u!114 &473198208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5014,8 +5040,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrap: {fileID: 2567191054088760324, guid: 2e3377fc85736b5478f49483d201f318, type: 3}
-  emit01: {fileID: 0}
-  emit02: {fileID: 0}
+  emit01: {fileID: 515425346}
+  emit02: {fileID: 1582674959540355069}
 --- !u!1 &7294390515398216738
 GameObject:
   m_ObjectHideFlags: 0

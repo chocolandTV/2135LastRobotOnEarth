@@ -93,7 +93,8 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         float step = (UpgradedMovementSpeed * VariableManager.Instance.Game_movement_multiplier) * Time.fixedDeltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, nextPosition, step);
+        // transform.position = Vector3.MoveTowards(transform.position, nextPosition, step);
+        _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, nextPosition, step));
     }
     private void HandleInput()
     {
