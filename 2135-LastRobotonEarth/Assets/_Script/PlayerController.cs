@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private Camera _camera;
     // UPGRADE STORE BOOL
     public bool isUpgrading { get; set; } = false;
+    // TRACK ANIMATION
+    [SerializeField] private Renderer playerTrackRenderer;
     private void Awake()
     {
         if (Instance != null)
@@ -93,7 +95,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         float step = (UpgradedMovementSpeed * VariableManager.Instance.Game_movement_multiplier) * Time.fixedDeltaTime;
-        // transform.position = Vector3.MoveTowards(transform.position, nextPosition, step);
+        playerTrackRenderer.material.SetTextureOffset ("_MainTex",Vector2.left*0.1f);
         _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, nextPosition, step));
     }
     private void HandleInput()

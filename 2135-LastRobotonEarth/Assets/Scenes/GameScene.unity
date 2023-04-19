@@ -826,13 +826,13 @@ Light:
   m_InnerSpotAngle: 8.972924
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -868,7 +868,7 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
+  m_ShadowRadius: 8.44
   m_ShadowAngle: 0
 --- !u!1001 &376483868
 PrefabInstance:
@@ -1828,7 +1828,7 @@ Light:
   m_InnerSpotAngle: 8.972924
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1870,7 +1870,7 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
+  m_ShadowRadius: 8.8
   m_ShadowAngle: 0
 --- !u!1 &832575517
 GameObject:
@@ -1921,6 +1921,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &909756843 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8394101462488489123, guid: bf683efd3083fb64ca4c77b8f401c27c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6074790372619548756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &966129907 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3855718568512955163, guid: f6cada2d3b43f0a4ab09b268f2012862,
@@ -6400,6 +6406,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6074790372964213642, guid: bf683efd3083fb64ca4c77b8f401c27c,
+        type: 3}
+      propertyPath: playerTrackRenderer
+      value: 
+      objectReference: {fileID: 909756843}
+    - target: {fileID: 6074790372964213643, guid: bf683efd3083fb64ca4c77b8f401c27c,
+        type: 3}
+      propertyPath: m_Height
+      value: 6.55
       objectReference: {fileID: 0}
     - target: {fileID: 6074790372964213646, guid: bf683efd3083fb64ca4c77b8f401c27c,
         type: 3}
