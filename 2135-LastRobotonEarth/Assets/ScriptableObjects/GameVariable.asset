@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee73004164333a4f87b5b170c9ecfd3, type: 3}
   m_Name: GameVariable
   m_EditorClassIdentifier: 
-  <Game_movement_multiplier>k__BackingField: 1
-  <Game_collecting_speed>k__BackingField: 1
-  <Game_thruster_power>k__BackingField: 0
-  <Game_tank_capacity_multiplier>k__BackingField: 1
-  <Game_robot_hull_multiplier>k__BackingField: 1
+  <SoundVolume>k__BackingField: 0
+  <MusicVolume>k__BackingField: 0
+  <MouseSensitivity>k__BackingField: 0
+  <SpawningQuantity>k__BackingField: {x: 1, y: 10}
+  <SpawninMaxObjects>k__BackingField: 20
