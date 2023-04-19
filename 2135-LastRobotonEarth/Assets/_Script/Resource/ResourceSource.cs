@@ -7,7 +7,7 @@ public class ResourceSource : MonoBehaviour
     public int quantity;
     private int maxQuantity;
     
-    
+    [SerializeField]private GameObject scalableObject;
     [SerializeField] private new ParticleSystem particleSystem;
     [SerializeField] private TextMeshProUGUI text;
     ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
@@ -40,7 +40,7 @@ public class ResourceSource : MonoBehaviour
         while (ResourceManager.Instance.isSpaceInStorage() && quantity > 0)
         {   
             
-            // gameObject.transform.localScale *= (0.9f * VariableManager.Instance.Game_collecting_speed);
+            scalableObject.transform.localScale *= (0.9f * VariableManager.Instance.Game_collecting_speed);
             particleSystem.Emit(emitParams, quantity);
             if (ResourceManager.Instance.isSpaceInStorage())
             // ADD RESOURCE
@@ -50,7 +50,7 @@ public class ResourceSource : MonoBehaviour
                 text.text = "+ " + quantity;
 
             }
-            yield return new WaitForSeconds(1.0f / VariableManager.Instance.Game_collecting_speed);
+            yield return new WaitForSeconds(scalableObject.transform.localScale.x / VariableManager.Instance.Game_collecting_speed);
         }
         if(quantity <=0)
             Destroy(gameObject);
