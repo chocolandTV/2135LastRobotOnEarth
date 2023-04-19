@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 8749101837053252961}
   - component: {fileID: 8352867800233496076}
   - component: {fileID: 1994684513145227500}
-  - component: {fileID: 7457243803458752435}
+  - component: {fileID: 2282234357121362135}
   m_Layer: 0
   m_Name: Scrap (8)
   m_TagString: Scrap
@@ -353,7 +353,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5828962302787069948}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -26.02, y: 3, z: -233.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -409,8 +409,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &7457243803458752435
-SphereCollider:
+--- !u!65 &2282234357121362135
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -420,8 +420,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.04
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.2616463, y: 2.1766489, z: 2.135086}
+  m_Center: {x: -0.019313812, y: 0.013139129, z: 0.0022354126}
 --- !u!1 &8306006593403144374
 GameObject:
   m_ObjectHideFlags: 0
