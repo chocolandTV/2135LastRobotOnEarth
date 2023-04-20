@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     public bool isUpgrading { get; set; } = false;
     // TRACK ANIMATION
     [SerializeField] private Renderer playerTrackRenderer;
+    private bool isJumping = false;
+    [SerializeField] private Transform isGroundedCheckObject;
+    [SerializeField] private float jumpForce = 5.0f;
     private void Awake()
     {
         if (Instance != null)
@@ -60,6 +63,10 @@ public class PlayerController : MonoBehaviour
         InputManager.OnInteract -= OnInteractInput;
 
     }
+    public void ChangeThrusterUpgrade(bool value)
+    {
+        InputManager.OnThruster += OnThrusterInput;
+    }
     public void ChangeControlUpgrade(bool value)
     {
         if (value) // UPGRADE STORE ON
@@ -90,6 +97,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleInput();
         Move();
+        
     }
 
     private void Move()
@@ -138,6 +146,11 @@ public class PlayerController : MonoBehaviour
         float yRotChange = oldrotation.eulerAngles.y - transform.rotation.eulerAngles.y;
         followTransform.transform.localRotation *= Quaternion.AngleAxis(yRotChange, Vector3.up);
     }
+    private void ThrusterImpulse()
+    {
+        _rigidbody.AddForce(Vector3.up* jumpForce *VariableManager.Instance.Game_thruster_power);
+        StartCoroutine(WaitUntilGrounded());
+    }
 
     private void OnLookInput(InputAction.CallbackContext context)
     {
@@ -178,7 +191,42 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    private void OnThrusterInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (!isJumping && isGrounded())
+            {
+                isJumping = true;
+                ThrusterImpulse();
+                
+            }
+        }
+        if(context.canceled)
+        {
+            if(isJumping)
+            {
+                Vector3 rbVelocity =  _rigidbody.velocity;
+                rbVelocity.y = -1.89f;
+                _rigidbody.velocity = rbVelocity;
+            }
+        }
 
+
+    }
+    IEnumerator WaitUntilGrounded()
+    {
+        while (!isGrounded())
+        {
+            yield return new WaitForSeconds(1);
+
+        }
+        isJumping = false;
+    }
+    private bool isGrounded()
+    {
+        return Physics.CheckSphere(isGroundedCheckObject.position,.1f, LayerMask.GetMask("Ground"));
+    }
     private void OnDestroy()
     {
         if (Instance == this) Instance = null;

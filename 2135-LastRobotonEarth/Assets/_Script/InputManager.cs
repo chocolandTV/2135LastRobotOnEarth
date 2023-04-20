@@ -29,6 +29,7 @@ public class InputManager : MonoBehaviour
     public static event Action<CallbackContext> OnMove;
     public static event Action<CallbackContext> OnInteract;
     public static event Action<CallbackContext> OnPauseGame;
+    public static event Action<CallbackContext> OnThruster;
    
     private void OnShemeChanged(PlayerInput playerInput)
     {
@@ -50,7 +51,10 @@ public class InputManager : MonoBehaviour
     {
         OnPauseGame?.Invoke(context);
     }
-    
+    private void OnThrusterInput(CallbackContext context)
+    {
+        OnThruster?.Invoke(context);
+    }
 
     /// SUBSCRIBE TO INPUT
     private void SubscribeToInput()
@@ -71,7 +75,9 @@ public class InputManager : MonoBehaviour
         _playerInput.actions["PauseGame"].performed += OnPauseGameInput;
         _playerInput.actions["PauseGame"].canceled += OnPauseGameInput;
 
-
+        _playerInput.actions["OnThruster"].started += OnThrusterInput;
+        _playerInput.actions["OnThruster"].performed += OnThrusterInput;
+        _playerInput.actions["OnThruster"].canceled += OnThrusterInput;
     }
     private void UnsubscribeFromInput()
     {
@@ -91,7 +97,9 @@ public class InputManager : MonoBehaviour
         _playerInput.actions["PauseGame"].performed -= OnPauseGameInput;
         _playerInput.actions["PauseGame"].canceled -= OnPauseGameInput;
 
-
+        _playerInput.actions["OnThruster"].started -= OnThrusterInput;
+        _playerInput.actions["OnThruster"].performed -= OnThrusterInput;
+        _playerInput.actions["OnThruster"].canceled -= OnThrusterInput;
     }
     private void OnDestroy()
     {
