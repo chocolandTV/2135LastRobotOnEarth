@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private bool isJumping = false;
     [SerializeField] private Transform isGroundedCheckObject;
     [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private ParticleSystem ThrusterParticleSystem;
+    ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
     private void Awake()
     {
         if (Instance != null)
@@ -61,9 +63,10 @@ public class PlayerController : MonoBehaviour
         InputManager.OnLook -= OnLookInput;
         InputManager.OnMove -= OnMoveInput;
         InputManager.OnInteract -= OnInteractInput;
+        InputManager.OnThruster -= OnThrusterInput;
 
     }
-    public void ChangeThrusterUpgrade(bool value)
+    public void ChangeThrusterUpgrade()
     {
         InputManager.OnThruster += OnThrusterInput;
     }
@@ -149,6 +152,7 @@ public class PlayerController : MonoBehaviour
     private void ThrusterImpulse()
     {
         _rigidbody.AddForce(Vector3.up* jumpForce *VariableManager.Instance.Game_thruster_power);
+        ThrusterParticleSystem.Emit(emitParams, 100);
         StartCoroutine(WaitUntilGrounded());
     }
 
@@ -202,15 +206,15 @@ public class PlayerController : MonoBehaviour
                 
             }
         }
-        if(context.canceled)
-        {
-            if(isJumping)
-            {
-                Vector3 rbVelocity =  _rigidbody.velocity;
-                rbVelocity.y = -1.89f;
-                _rigidbody.velocity = rbVelocity;
-            }
-        }
+        // if(context.canceled)
+        // {
+        //     if(isJumping)
+        //     {
+        //         Vector3 rbVelocity =  _rigidbody.velocity;
+        //         rbVelocity.y = -1.89f;
+        //         _rigidbody.velocity = rbVelocity;
+        //     }
+        // }
 
 
     }

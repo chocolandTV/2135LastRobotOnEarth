@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Thruster",
+                    "name": "OnThruster",
                     "type": "Button",
                     "id": "2f51bde4-7630-4243-b7f6-88f236f0fe71",
                     "expectedControlType": "Button",
@@ -301,7 +301,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Thruster",
+                    "action": "OnThruster",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -312,7 +312,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Thruster",
+                    "action": "OnThruster",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
