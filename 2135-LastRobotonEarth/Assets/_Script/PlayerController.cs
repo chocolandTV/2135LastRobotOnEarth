@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform followTransform;
 
     // LOOK VARS
-    [SerializeField] private float rotationPowerX = 3f;
-    [SerializeField] private float rotationPowerY = 3f;
+    [SerializeField] public float rotationPowerX = 3f;// MAIN MENU CHANGABLE
+    [SerializeField] public float rotationPowerY = 3f;// MAIN MENU CHANGABLE
     public Vector3 nextPosition;
     private Camera _camera;
     // UPGRADE STORE BOOL
@@ -199,20 +199,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Terraformer"))
-        {
-            HUDManager.Instance.OnUpgradeStoreChange(true);
     
-        }
-    }
-    private void OnTriggerExit(Collider other) {
-        if(other.CompareTag("Terraformer"))
-        {
-            HUDManager.Instance.OnUpgradeStoreChange(false);
-    
-        }
-    }
     private void OnThrusterInput(InputAction.CallbackContext context)
     {
         if (context.started)

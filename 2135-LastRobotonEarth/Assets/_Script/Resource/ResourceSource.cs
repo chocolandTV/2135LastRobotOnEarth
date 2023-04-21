@@ -10,6 +10,7 @@ public class ResourceSource : MonoBehaviour
     [SerializeField]private GameObject scalableObject;
     [SerializeField] private new ParticleSystem particleSystem;
     [SerializeField] private TextMeshProUGUI text;
+    // [SerializeField]private GameObject deathOverTextObject;
     ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
     
     private void Start()
@@ -52,11 +53,24 @@ public class ResourceSource : MonoBehaviour
             }
             yield return new WaitForSeconds(scalableObject.transform.localScale.x / VariableManager.Instance.Game_collecting_speed);
         }
-        if(quantity <=0)
+        if(quantity <=0){
+
+            // GameObject obj = Instantiate(deathOverTextObject, gameObject.transform.position, Quaternion.identity);
+            // obj.GetComponent<ResourceUILookAtCamera>().text.text =maxQuantity.ToString();
+            // StartCoroutine(Moveup(obj));
             Destroy(gameObject);
+        }
 
     }
-
+    // IEnumerator Moveup(GameObject obj)
+    // {
+    //     for (int i = 0; i < 20; i++)
+    //     {
+    //         obj.GetComponent<RectTransform>().position += Vector3.up;
+    //         yield return new WaitForSeconds(0.5f);
+    //     }
+    //     Destroy(gameObject);
+    // }
 
 
 }

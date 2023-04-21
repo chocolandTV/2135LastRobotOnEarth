@@ -5009,6 +5009,8 @@ MonoBehaviour:
   scalableObject: {fileID: 486556782229377259}
   particleSystem: {fileID: 466898856747659648}
   text: {fileID: 3893571733386646254}
+  deathOverTextObject: {fileID: 2206275078232908572, guid: a05a56a8f409d64489a27aaae39ccd88,
+    type: 3}
 --- !u!114 &492378857414162213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5242,6 +5244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba1d1f7eedc9234d9794a8c6bd268e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &9139147343430507581
 GameObject:
   m_ObjectHideFlags: 0

@@ -4878,9 +4878,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quantity: 20
-  scalableOBject: {fileID: 0}
+  scalableObject: {fileID: 0}
   particleSystem: {fileID: 513377105}
   text: {fileID: 3490989917664714815}
+  deathOverTextObject: {fileID: 2206275078232908572, guid: a05a56a8f409d64489a27aaae39ccd88,
+    type: 3}
 --- !u!114 &49405451253974516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5141,6 +5143,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020198770544826783, guid: a05a56a8f409d64489a27aaae39ccd88,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a05a56a8f409d64489a27aaae39ccd88, type: 3}
