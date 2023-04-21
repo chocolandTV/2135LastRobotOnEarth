@@ -12,5 +12,5 @@ public class GameVariables : ScriptableObject
    // HEADER SPAWNING 
    
    [field:SerializeField] public Vector2Int SpawningQuantity { get; private set;}
-   [field:SerializeField] public int SpawninMaxObjects { get; private set;}
+   [field:SerializeField] public int SpawningMaxObjects { get; private set;}
 }

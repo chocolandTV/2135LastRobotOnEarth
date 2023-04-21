@@ -9,6 +9,7 @@ TagManager:
   - Scrap
   - Ground
   - Attractor
+  - Terraformer
   layers:
   - Default
   - TransparentFX

@@ -188,12 +188,28 @@ public class PlayerController : MonoBehaviour
             if (!isUpgrading)
             {
                 isUpgrading = true;
+                 HUDManager.Instance.OnUpgradeStoreChange(false);
                 ChangeControlUpgrade(true);
+
                 
             }
         }
 
 
+    }
+    private void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Terraformer"))
+        {
+            HUDManager.Instance.OnUpgradeStoreChange(true);
+    
+        }
+    }
+    private void OnTriggerExit(Collider other) {
+        if(other.CompareTag("Terraformer"))
+        {
+            HUDManager.Instance.OnUpgradeStoreChange(false);
+    
+        }
     }
     private void OnThrusterInput(InputAction.CallbackContext context)
     {
@@ -206,15 +222,7 @@ public class PlayerController : MonoBehaviour
                 
             }
         }
-        // if(context.canceled)
-        // {
-        //     if(isJumping)
-        //     {
-        //         Vector3 rbVelocity =  _rigidbody.velocity;
-        //         rbVelocity.y = -1.89f;
-        //         _rigidbody.velocity = rbVelocity;
-        //     }
-        // }
+        
 
 
     }
