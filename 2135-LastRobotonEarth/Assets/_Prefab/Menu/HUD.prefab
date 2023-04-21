@@ -111,7 +111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.39995, y: 0}
+  m_AnchoredPosition: {x: -187.1, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4744187653962940106
@@ -1274,7 +1274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.39995, y: 0}
+  m_AnchoredPosition: {x: -187.1, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &53255890557305823
@@ -1427,7 +1427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.39995, y: 0}
+  m_AnchoredPosition: {x: -187.1, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1448348634091276652
@@ -1790,7 +1790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.39995, y: 0}
+  m_AnchoredPosition: {x: -187.1, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6211310854839435418
@@ -2270,6 +2270,8 @@ MonoBehaviour:
   scrapValueUI: {fileID: 7753219055862636976}
   objectiveNameUI: {fileID: 9086317463334391007}
   objectiveValueUI: {fileID: 3085777639630776947}
+  hudCrossHair: {fileID: 0}
+  hudUpgradeUI: {fileID: 0}
 --- !u!1 &7753219055649852270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,7 +2284,7 @@ GameObject:
   - component: {fileID: 7753219055649852267}
   - component: {fileID: 7753219055649852268}
   m_Layer: 5
-  m_Name: TankValuePanel
+  m_Name: StorageValuePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2359,7 +2361,7 @@ GameObject:
   - component: {fileID: 7753219055797632694}
   - component: {fileID: 7753219055797632695}
   m_Layer: 5
-  m_Name: TankIconPanel
+  m_Name: StorageIconPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2653,7 +2655,7 @@ GameObject:
   - component: {fileID: 7753219056461566124}
   - component: {fileID: 7753219056461566125}
   m_Layer: 5
-  m_Name: TankOverPanel
+  m_Name: StorageOverPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2763,7 +2765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7753219056581231659
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2781,7 +2783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.39995, y: 0}
+  m_AnchoredPosition: {x: -187.1, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7753219056581231657
@@ -2911,7 +2913,7 @@ GameObject:
   - component: {fileID: 7753219056590439305}
   - component: {fileID: 7753219056590439306}
   m_Layer: 5
-  m_Name: TankNamePanel
+  m_Name: StorageNamePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3194,7 +3196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -221.8, y: 0}
+  m_AnchoredPosition: {x: -304, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7753219056904264808
@@ -3225,7 +3227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tank
+  m_text: Storage
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3935,7 +3937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.39995, y: 0}
+  m_AnchoredPosition: {x: -187.1, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &268318328516310114

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751cfbeecf087474f9c812d2a9a7a86e, type: 3}
   m_Name: UpgradeTank
   m_EditorClassIdentifier: 
-  <costs>k__BackingField: 0a00000014000000280000004b0000006400000096000000c80000002c010000ae01000058020000
+  <costs>k__BackingField: 05000000140000001400000014000000140000001400000014000000140000001400000014000000
   <multiplier>k__BackingField:
   - 1
   - 2
