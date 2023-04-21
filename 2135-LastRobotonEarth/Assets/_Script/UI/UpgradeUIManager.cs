@@ -13,6 +13,7 @@ public class UpgradeUIManager : MonoBehaviour
     [SerializeField] private GameObject Error_MaxLevel;
     [SerializeField] private TextMeshProUGUI[] CostTexts;
     [SerializeField] private TextMeshProUGUI[] levelTexts;
+     [SerializeField] private TextMeshProUGUI[] ModifierTexts;
     [SerializeField] private RawImage[] levelProgressIcons;
     [SerializeField] private Texture2D recycleBG;
     [SerializeField] private Texture2D recycleActive;
@@ -41,6 +42,7 @@ public class UpgradeUIManager : MonoBehaviour
         {
             CostTexts[counter].text = x.costs[x.activeLevel].ToString();
             levelTexts[counter].text = x.activeLevel.ToString();
+           
             for (int i = 0; i < 10; i++)
             {
                 if(x.activeLevel >= i+1)
@@ -49,8 +51,11 @@ public class UpgradeUIManager : MonoBehaviour
             }
             counter ++;
         }
-        
-        
+         ModifierTexts[0].text = PlayerController.Instance.UpgradedMovementSpeed.ToString("F2") + " m/s";
+         ModifierTexts[1].text = VariableManager.Instance.Game_collecting_speed.ToString("F2") + " Scrap/s";
+         ModifierTexts[2].text = (20 * VariableManager.Instance.Game_tank_capacity_multiplier).ToString("F2") + " m³";
+         ModifierTexts[3].text = (10 * VariableManager.Instance.Game_thruster_power).ToString("F2") + "  au";
+         ModifierTexts[4].text = (10 * VariableManager.Instance.Game_Terraformer_mission).ToString("F2") + " %";
         
         // foreach Level levelProgressIcons  color 00ffff and recycleBG / recycleActive
 

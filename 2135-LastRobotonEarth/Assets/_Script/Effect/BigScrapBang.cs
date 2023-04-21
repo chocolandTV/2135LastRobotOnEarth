@@ -27,7 +27,7 @@ public class BigScrapBang : MonoBehaviour
             gameObject.transform.parent = parentTransform;
         }
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Ground"))
+        if(other.CompareTag("Ground") || other.CompareTag("Scrap"))
         {
             // INSTANTIATE SCRAP RANDOM
             for (int i = 0; i < Random.Range(1,gameVariables.SpawningMaxObjects); i++)

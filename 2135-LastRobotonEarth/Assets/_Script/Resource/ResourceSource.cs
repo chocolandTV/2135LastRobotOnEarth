@@ -40,7 +40,7 @@ public class ResourceSource : MonoBehaviour
         while (ResourceManager.Instance.isSpaceInStorage() && quantity > 0)
         {   
             
-            scalableObject.transform.localScale *= (0.9f * VariableManager.Instance.Game_collecting_speed);
+            scalableObject.transform.localScale *= (0.9f / VariableManager.Instance.Game_collecting_speed);
             particleSystem.Emit(emitParams, quantity);
             if (ResourceManager.Instance.isSpaceInStorage())
             // ADD RESOURCE

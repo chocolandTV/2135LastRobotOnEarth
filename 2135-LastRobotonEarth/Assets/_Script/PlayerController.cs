@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     // Player Vars
     private Rigidbody _rigidbody;
     [SerializeField] private float movementSpeed = 12.5f; // Upgrade Multiplier 1; 10
-    private float UpgradedMovementSpeed => movementSpeed * VariableManager.Instance.Game_movement_multiplier;
+    public float UpgradedMovementSpeed => movementSpeed * VariableManager.Instance.Game_movement_multiplier;
     private Vector2 _moveInput;
     private Vector2 _lookInputDelta;
     private Vector2 _lookVector;
