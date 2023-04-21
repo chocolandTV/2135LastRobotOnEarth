@@ -16,4 +16,4 @@ MonoBehaviour:
   <MusicVolume>k__BackingField: 0
   <MouseSensitivity>k__BackingField: 0
   <SpawningQuantity>k__BackingField: {x: 1, y: 10}
-  <SpawninMaxObjects>k__BackingField: 20
+  <SpawningMaxObjects>k__BackingField: 10

@@ -32,10 +32,13 @@ public class BigScrapBang : MonoBehaviour
             // INSTANTIATE SCRAP RANDOM
             for (int i = 0; i < Random.Range(1,gameVariables.SpawningMaxObjects); i++)
             {
-                GameObject  obj = Instantiate(ScrapContainer.Instance.GetRandomScrapObject(), transform.position,Quaternion.identity);
-                int scale = Random.Range(1,5);
+                GameObject obj = Instantiate(ScrapContainer.Instance.GetRandomScrapObject(), transform.position,Quaternion.identity);
+                
+                int scale = Random.Range(1,10);
+                int scaleQuantity = Random.Range(gameVariables.SpawningQuantity.x*scale,gameVariables.SpawningQuantity.y*scale);
+                
                 obj.transform.localScale=(Vector3.one *scale);
-                obj.GetComponent<ResourceSource>().quantity = Random.Range(gameVariables.SpawningQuantity.x*scale,gameVariables.SpawningQuantity.y*scale);
+                obj.GetComponent<ResourceSource>().quantity = scaleQuantity;
             }
             emit01.Emit(emitParams, 5);
             emit02.Emit(emitParams, 30);

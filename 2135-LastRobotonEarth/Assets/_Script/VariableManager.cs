@@ -32,7 +32,7 @@ public class VariableManager : MonoBehaviour
     public void SetTerraformerMissionProgress(float value)
     {
         Game_Terraformer_mission = value;
-        terraformer.transform.localScale *= value;
+        terraformer.transform.localScale = Vector3.one*value;
         // SCALE TERRAFORMER 
         // IF 50% MESSAGE HUD  GOOD JOB KEEP COLLECTING
         // IF 100% MESSAGE HUD FINISHED WIN AND CUTsCENE 

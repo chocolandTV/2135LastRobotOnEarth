@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 50.0f;
     [SerializeField] private ParticleSystem ThrusterParticleSystem;
     ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
+    // VERTICAL MOUSEMOVEMENT
+    public Vector3 mouseVerticalVector =Vector3.right; // MAIN MENU CHANGABLE
     private void Awake()
     {
         if (Instance != null)
@@ -114,7 +116,7 @@ public class PlayerController : MonoBehaviour
         //Rotate the Follow Target transform based on the input
         followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.x * rotationPowerX * Time.fixedDeltaTime, Vector3.up);
 
-        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.y * rotationPowerY * Time.fixedDeltaTime, Vector3.right);
+        followTransform.transform.rotation *= Quaternion.AngleAxis(_lookInputDelta.y * rotationPowerY * Time.fixedDeltaTime, mouseVerticalVector);
         _lookInputDelta = Vector2.zero;
         var angles = followTransform.transform.localEulerAngles;
         angles.z = 0;
@@ -188,7 +190,7 @@ public class PlayerController : MonoBehaviour
             if (!isUpgrading)
             {
                 isUpgrading = true;
-                 HUDManager.Instance.OnUpgradeStoreChange(false);
+                HUDManager.Instance.OnUpgradeStoreChange(false);
                 ChangeControlUpgrade(true);
 
                 

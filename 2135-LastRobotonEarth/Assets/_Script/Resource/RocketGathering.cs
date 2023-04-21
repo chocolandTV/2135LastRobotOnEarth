@@ -21,5 +21,14 @@ public class RocketGathering : MonoBehaviour
             HUDManager.Instance.OnChangeScrapUI();
         }
     }
-    
+    private void OnTriggerStay(Collider other) {
+        if(other.CompareTag("Recycler"))
+        {
+            int holdScraps = ResourceManager.Instance.GamePlayerScraps;
+            ResourceManager.Instance.RemovePlayerResource();
+            ResourceManager.Instance.AddResourceRocket(holdScraps);
+            system.Emit(emitParams, holdScraps);
+            HUDManager.Instance.OnChangeScrapUI();
+        }
+    }
 }
