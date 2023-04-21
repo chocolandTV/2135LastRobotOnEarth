@@ -6,9 +6,9 @@ using UnityEngine;
 public class GameVariables : ScriptableObject
 {
    
-   [field:SerializeField] public float SoundVolume {get; private set;}
-   [field:SerializeField] public float MusicVolume {get; private set;}
-   [field:SerializeField] public float MouseSensitivity {get; private set;}
+   [field:SerializeField] public float SoundVolume {get;  set;}
+   [field:SerializeField] public float MusicVolume {get; set;}
+   [field:SerializeField] public float MouseSensitivity {get;  set;}
    
    // HEADER SPAWNING 
    

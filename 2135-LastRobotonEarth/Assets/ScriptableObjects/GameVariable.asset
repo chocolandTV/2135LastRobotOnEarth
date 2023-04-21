@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee73004164333a4f87b5b170c9ecfd3, type: 3}
   m_Name: GameVariable
   m_EditorClassIdentifier: 
-  <SoundVolume>k__BackingField: 0
-  <MusicVolume>k__BackingField: 0
+  <SoundVolume>k__BackingField: 0.5
+  <MusicVolume>k__BackingField: 0.5
   <MouseSensitivity>k__BackingField: 0
   <SpawningQuantity>k__BackingField: {x: 1, y: 10}
   <SpawningMaxObjects>k__BackingField: 10

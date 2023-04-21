@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get; private set; }
     // Player Vars
     private Rigidbody _rigidbody;
+    public Vector3 startposition;
     [SerializeField] private float movementSpeed = 12.5f; // Upgrade Multiplier 1; 10
     public float UpgradedMovementSpeed => movementSpeed * VariableManager.Instance.Game_movement_multiplier;
     private Vector2 _moveInput;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
         }
         Instance = this;
         _rigidbody = GetComponent<Rigidbody>();
+        startposition = transform.position;
         SubscribeToInput();
     }
 
