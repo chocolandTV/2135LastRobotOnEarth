@@ -8,6 +8,17 @@ public class TerrainController : MonoBehaviour
     private Terrain terrain;
     [SerializeField] private ParticleSystem terrainParticleSystem;
     ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
+    public static TerrainController Instance;
+
+    private void Awake() {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        
+    }
     // Start is called before the first frame update
     void Start()
     {

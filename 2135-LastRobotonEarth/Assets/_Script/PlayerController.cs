@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Renderer playerTrackRenderer;
     private bool isJumping = false;
     [SerializeField] private Transform isGroundedCheckObject;
-    [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private float jumpForce = 50.0f;
     [SerializeField] private ParticleSystem ThrusterParticleSystem;
     ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
     private void Awake()
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
     }
     private void ThrusterImpulse()
     {
-        _rigidbody.AddForce(Vector3.up* jumpForce *VariableManager.Instance.Game_thruster_power);
+        _rigidbody.AddForce(Vector3.up* jumpForce *VariableManager.Instance.Game_thruster_power,ForceMode.Impulse);
         ThrusterParticleSystem.Emit(emitParams, 100);
         StartCoroutine(WaitUntilGrounded());
     }

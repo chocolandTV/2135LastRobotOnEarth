@@ -50,6 +50,8 @@ public class UpgradeTerraformer : MonoBehaviour
         VariableManager.Instance.SetTerraformerMissionProgress(upgradeSettings.multiplier[level]);
         UpgradeUIManager.Instance.UpdateUI();
         HUDManager.Instance.OnChangeScrapUI();
+        // CHANGE MAP
+        TerrainController.Instance.ChangeTerrainData(level);
         // SOUND 
         // ROBOT ANIMATION HAPPY 
     }

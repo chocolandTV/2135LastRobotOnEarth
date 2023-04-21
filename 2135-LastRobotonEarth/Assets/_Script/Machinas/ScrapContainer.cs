@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class ScrapContainer : MonoBehaviour
 {
+    public static ScrapContainer Instance { get;private set;}
     [SerializeField]private GameObject[]ScrapObjects; 
-    // Start is called before the first frame update
+    
+    private void Awake() {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     public GameObject GetRandomScrapObject()
     {
         return ScrapObjects[Random.Range(0, ScrapObjects.Length)];

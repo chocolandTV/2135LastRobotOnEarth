@@ -8,8 +8,9 @@ public class MechaArmRespawner : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Respawn"))
         {
-               GameObject obj = Instantiate(BigScrapObject, transform.position,Quaternion.identity);
-               obj.transform.parent = other.gameObject.transform; 
+            Debug.Log(" TRIGGER WILL SPAWNING BIG SCRAP");
+            GameObject obj = Instantiate(BigScrapObject, transform.position,Quaternion.identity);
+            obj.transform.parent = other.gameObject.transform; 
         }
     }
 }
