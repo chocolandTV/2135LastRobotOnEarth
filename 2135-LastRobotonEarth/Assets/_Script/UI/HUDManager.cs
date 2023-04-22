@@ -8,7 +8,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI objectiveNameUI;
     [SerializeField] private TextMeshProUGUI objectiveValueUI;
     private string objectNameDefault = "PRIMARY:";
-    private string objectValueDefault ="Repair the Shuttle";
+    private string objectValueDefault ="Collect Scraps from nearby Objects";
     public static HUDManager Instance{get;set;}
     // UPGRADE STORE 
     [SerializeField] private GameObject hudCrossHair;

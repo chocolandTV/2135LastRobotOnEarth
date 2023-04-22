@@ -52,7 +52,7 @@ public class ResourceManager : MonoBehaviour
     }
     public void RemovePlayerResource()
     {
-        Debug.Log("RM:Player spend " + GamePlayerScraps+ " to the Rocket");
+        // Debug.Log("RM:Player spend " + GamePlayerScraps+ " to the Rocket");
         GamePlayerScraps = 0;
         TankManager.Instance.OnChangeValue( (int) Mathf.Round((float)GamePlayerScraps/ (float)SuperMaxScraps *100f));
     }
@@ -61,7 +61,7 @@ public class ResourceManager : MonoBehaviour
     {
         GamePlayerScraps+=value;
         
-        Debug.Log("RM: Stored " +  value + " in PlayerStorage");
+        // Debug.Log("RM: Stored " +  value + " in PlayerStorage");
         TankManager.Instance.OnChangeValue((int) Mathf.Round((float)GamePlayerScraps/ (float)SuperMaxScraps *100f));
     }
     public void AddResourceRocket(int value)
