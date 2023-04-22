@@ -58,6 +58,7 @@ public class ResourceSource : MonoBehaviour
             // GameObject obj = Instantiate(deathOverTextObject, gameObject.transform.position, Quaternion.identity);
             // obj.GetComponent<ResourceUILookAtCamera>().text.text =maxQuantity.ToString();
             // StartCoroutine(Moveup(obj));
+            SoundManager.Instance.PlaySound(SoundManager.Sound.object_collect, PlayerController.Instance.gameObject.transform.position);
             Destroy(gameObject);
         }
 

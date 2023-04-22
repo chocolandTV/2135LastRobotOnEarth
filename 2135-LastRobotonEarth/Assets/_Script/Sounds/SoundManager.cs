@@ -60,6 +60,12 @@ public class SoundManager : MonoBehaviour
         // obj.transform.position = position;
        audioSourcePool.PlayAtPoint(audioClips[(int)value], position,SoundObject.GetComponent<AudioSource>(), gameVariables.SoundVolume);
     }
+    public void PlaySound(Sound value,Vector3 position, float Volume)
+    {
+        // GameObject obj =Instantiate(SoundObject);
+        // obj.transform.position = position;
+       audioSourcePool.PlayAtPoint(audioClips[(int)value], position,SoundObject.GetComponent<AudioSource>(), Volume);
+    }
     public void PlayMusicNext()
     {
         MusicObject.PlayOneShot(SongList[currentMusicIndex], gameVariables.MusicVolume);

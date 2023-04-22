@@ -57,7 +57,7 @@ public class UpgradeUIManager : MonoBehaviour
          ModifierTexts[3].text = (10 * VariableManager.Instance.Game_thruster_power).ToString("F2") + "  au";
          ModifierTexts[4].text = (10 * VariableManager.Instance.Game_Terraformer_mission).ToString("F2") + " %";
         
-        // foreach Level levelProgressIcons  color 00ffff and recycleBG / recycleActive
+        SoundManager.Instance.PlaySound(SoundManager.Sound.MenuClick, PlayerController.Instance.gameObject.transform.position);
 
     }
     public void UpgradeStoreSetActive(bool value)
@@ -68,26 +68,29 @@ public class UpgradeUIManager : MonoBehaviour
     public void ExitButton()
     {
         PlayerController.Instance.ChangeControlUpgrade(false);
+        SoundManager.Instance.PlaySound(SoundManager.Sound.MenuClick, PlayerController.Instance.gameObject.transform.position);
     }
     public void ErrorMessage_Hide()
     {
+        
         error_NotEnoughScrap.SetActive(false);
         Error_MaxLevel.SetActive(false);
         foreach (Image x in upgradeButtonColorReset)
         {
             x.color= Color.white;
         }
+        SoundManager.Instance.PlaySound(SoundManager.Sound.MenuClick, PlayerController.Instance.gameObject.transform.position);
     }
     public void ErrorMessage_NotEnoughScrap()
     {
         error_NotEnoughScrap.SetActive(true);
-        // SOUND PLAY
+        SoundManager.Instance.PlaySound(SoundManager.Sound.MenuClick, PlayerController.Instance.gameObject.transform.position);
         // ROBO ANIMATION
     }
     public void ErrorMessage_ReachedMaxLevel()
     {
         Error_MaxLevel.SetActive(true);
-        // SOUND PLAY
+        SoundManager.Instance.PlaySound(SoundManager.Sound.MenuClick, PlayerController.Instance.gameObject.transform.position);
         // ROBO ANIMATION
     }
 }

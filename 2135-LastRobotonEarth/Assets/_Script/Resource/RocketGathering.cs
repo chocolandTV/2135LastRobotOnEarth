@@ -19,6 +19,7 @@ public class RocketGathering : MonoBehaviour
             ResourceManager.Instance.AddResourceRocket(holdScraps);
             system.Emit(emitParams, holdScraps);
             HUDManager.Instance.OnChangeScrapUI();
+            SoundManager.Instance.PlaySound(SoundManager.Sound.object_deposit, PlayerController.Instance.gameObject.transform.position);
         }
     }
     private void OnTriggerStay(Collider other) {

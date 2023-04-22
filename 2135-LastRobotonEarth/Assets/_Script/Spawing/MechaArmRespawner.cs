@@ -10,7 +10,8 @@ public class MechaArmRespawner : MonoBehaviour
         {
             Debug.Log(" TRIGGER WILL SPAWNING BIG SCRAP");
             GameObject obj = Instantiate(BigScrapObject, transform.position,Quaternion.identity);
-            obj.transform.parent = other.gameObject.transform; 
+            obj.transform.parent = other.gameObject.transform;
+            SoundManager.Instance.PlaySound(SoundManager.Sound.Ambience, other.gameObject.transform.position);
         }
     }
 }

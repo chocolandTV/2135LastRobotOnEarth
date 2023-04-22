@@ -40,6 +40,7 @@ public class HUDManager : MonoBehaviour
         objectiveNameUI.text = "SECONDARY:";
         objectiveValueUI.fontSize = 26;
         objectiveValueUI.text = "Deliver the scrap to the shuttle.";
+        SoundManager.Instance.PlaySound(SoundManager.Sound.Robot_StorageFull, PlayerController.Instance.gameObject.transform.position);
     }
     public void PlayerEnterShuttleMission()
     {

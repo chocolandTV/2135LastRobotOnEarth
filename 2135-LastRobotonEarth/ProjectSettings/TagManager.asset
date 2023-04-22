@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - Attractor
   - Terraformer
+  - restart
   layers:
   - Default
   - TransparentFX
