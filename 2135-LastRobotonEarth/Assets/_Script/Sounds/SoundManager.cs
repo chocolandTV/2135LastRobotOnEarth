@@ -11,7 +11,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource MusicObject;
     private AudioSourcePool audioSourcePool;
     public static SoundManager Instance {get;set;}
-    private int currentMusicIndex = 0;
+    private int currentMusicIndex = 1;
     public enum Sound
     {
         Robot_Thruster,

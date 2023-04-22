@@ -6,6 +6,7 @@ public class TracksAnimation : MonoBehaviour
 {
     [SerializeField] private Renderer playerTrackRenderer;
     private new Rigidbody rigidbody;
+    private AudioSource Tracksound;
     private float velocity;
     private float offset= 0.0f;
 
@@ -13,6 +14,7 @@ public class TracksAnimation : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        // playerTrackRenderer = GetComponent<Renderer>();
     }
 
     private void FixedUpdate() {
@@ -20,21 +22,23 @@ public class TracksAnimation : MonoBehaviour
     }
     private void HandlePlayerMovement()
     {
-        velocity = rigidbody.velocity.x + rigidbody.velocity.y + rigidbody.velocity.z;
-        Debug.Log(velocity);
+        
+        float velocity = rigidbody.velocity.magnitude;
+       
         if(velocity > 1)
         {
-            TracksAnim(velocity);
-            TracksSound((float)velocity /10);
+            TracksAnim(-velocity* Time.fixedDeltaTime);
+            TracksSound(velocity);
         }
     }
-    private void TracksSound(float value)
+    private void TracksSound(float volume)
     {
-        SoundManager.Instance.PlaySound(SoundManager.Sound.Robot_Moving, PlayerController.Instance.gameObject.transform.position, value);
+        Debug.Log(volume);
+        Tracksound.volume  = Mathf.Clamp(volume, 0, 0.1f);
     }
    private void TracksAnim(float value)
     {
         offset += value;
-        playerTrackRenderer.material.SetTextureOffset ("_MainTex", new Vector3(offset,0,0));
+        playerTrackRenderer.materials[0].SetTextureOffset ("_BaseMap", new Vector2(offset,offset));
     }
 }

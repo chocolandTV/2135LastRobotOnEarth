@@ -3,57 +3,71 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimate : MonoBehaviour
-{  
-    int blendShapeCount;
+{
+    int blendShapeCount = 5;
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
-    Mesh skinnedMesh;
-    float blendOne = 0f;
-    float blendTwo = 0f;
+    [SerializeField] private Mesh skinnedMesh;
+    float currentblend = 0f;
     float blendSpeed = 1f;
-    bool blendOneFinished = false;
-    private float currentAnim;
-    public static PlayerAnimate Instance {get;set;}
-    void Awake ()
+    bool currentBlendStoped = false;
+    private int currentAnim;
+    public static PlayerAnimate Instance { get; set; }
+    void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
+
+        // skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer> ();
+        skinnedMesh = skinnedMeshRenderer.sharedMesh;
+    }
+
+    void Start()
+    {
+        blendShapeCount = skinnedMesh.blendShapeCount;
+    }
+
+    void FixedUpdate()
+    {
+        FaceAnim();
         
-        skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer> ();
-        skinnedMesh = skinnedMeshRenderer.GetComponent<SkinnedMeshRenderer> ().sharedMesh;
     }
-
-    void Start ()
+    private void FaceAnim()
     {
-        blendShapeCount = skinnedMesh.blendShapeCount; 
-    }
-
-    void FixedUpdate ()
-    {
-        if (blendShapeCount > 2) {
-            if (blendOne < 100f) {
-                skinnedMeshRenderer.SetBlendShapeWeight (0, blendOne);
-                blendOne += blendSpeed;
-            } else {
-                blendOneFinished = true;
+        
+            if (currentblend < 100f && !currentBlendStoped)
+            {
+                skinnedMeshRenderer.SetBlendShapeWeight(currentAnim, currentblend);
+                currentblend += blendSpeed;
+            }
+            else
+            {
+                if(currentBlendStoped)
+                {
+                    for (int i = 0; i < blendShapeCount; i++)
+                    {
+                        skinnedMeshRenderer.SetBlendShapeWeight(i, 0);
+                    }
+                }
+                currentAnim ++;
+                if(currentAnim > blendShapeCount)
+                    currentAnim =0;
+                currentblend = 0;
             }
 
-            if (blendOneFinished == true && blendTwo < 100f) {
-                skinnedMeshRenderer.SetBlendShapeWeight (1, blendTwo);
-                blendTwo += blendSpeed;
-            }
-        }
+            
+        
     }
     public void PlayerStartAnimateRemote(int value)
     {
-        currentAnim = 0;
+        float _currentBlend = 0;
         for (int i = 0; i < 100; i++)
         {
-            skinnedMeshRenderer.SetBlendShapeWeight (value, currentAnim);
-                currentAnim += blendSpeed;
+            skinnedMeshRenderer.SetBlendShapeWeight(value, currentAnim);
+            _currentBlend += blendSpeed;
         }
     }
 }
