@@ -53,6 +53,7 @@ public class UpgradeTerraformer : MonoBehaviour
         // CHANGE MAP
         TerrainController.Instance.ChangeTerrainData(level);
         // SOUND 
-        // ROBOT ANIMATION HAPPY 
+        SoundManager.Instance.PlaySound(SoundManager.Sound.Robot_Happy, PlayerController.Instance.gameObject.transform.position);
+        PlayerAnimate.Instance.PlayerStartAnimateRemote(1);
     }
 }

@@ -51,6 +51,7 @@ public class UpgradeTank : MonoBehaviour
         UpgradeUIManager.Instance.UpdateUI();
         HUDManager.Instance.OnChangeScrapUI();
         // SOUND 
-        // ROBOT ANIMATION HAPPY 
+        SoundManager.Instance.PlaySound(SoundManager.Sound.Robot_Happy, PlayerController.Instance.gameObject.transform.position);
+        PlayerAnimate.Instance.PlayerStartAnimateRemote(1);
     }
 }
