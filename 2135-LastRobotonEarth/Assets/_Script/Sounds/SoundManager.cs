@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private GameVariables gameVariables;
     [SerializeField] private GameObject SoundObject;
     [SerializeField] private AudioSource MusicObject;
-    
+    private AudioSourcePool audioSourcePool;
     public static SoundManager Instance {get;set;}
     private int currentMusicIndex = 0;
     public enum Sound
@@ -43,6 +43,7 @@ public class SoundManager : MonoBehaviour
     }
     private void Start() {
         // MusicObject = GetComponent<AudioSource>();
+        audioSourcePool = GetComponent<AudioSourcePool>();
         PlayMusicNext();
     }
     public void OnChangeMusicVolume(float value)
@@ -55,9 +56,9 @@ public class SoundManager : MonoBehaviour
     }
     public void PlaySound(Sound value,Vector3 position)
     {
-        GameObject obj =Instantiate(SoundObject);
-        obj.transform.position = position;
-        obj.GetComponent<AudioSource>().PlayOneShot(audioClips[(int)value], gameVariables.SoundVolume);
+        // GameObject obj =Instantiate(SoundObject);
+        // obj.transform.position = position;
+       audioSourcePool.PlayAtPoint(audioClips[(int)value], position,SoundObject.GetComponent<AudioSource>(), gameVariables.SoundVolume);
     }
     public void PlayMusicNext()
     {
