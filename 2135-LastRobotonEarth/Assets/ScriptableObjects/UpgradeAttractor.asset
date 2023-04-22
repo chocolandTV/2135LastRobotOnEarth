@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751cfbeecf087474f9c812d2a9a7a86e, type: 3}
   m_Name: UpgradeAttractor
   m_EditorClassIdentifier: 
-  <costs>k__BackingField: 05000000140000001400000014000000140000001400000014000000140000001400000014000000
+  <costs>k__BackingField: 0500000005000000050000000a0000000a0000000a0000000a000000140000001400000019000000
   <multiplier>k__BackingField:
   - 1
   - 1.2

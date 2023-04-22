@@ -5,7 +5,7 @@ using UnityEngine;
 public class Moon : MonoBehaviour
 {
     
-    Vector3 rotation = new Vector3(0,10,0);
+    Vector3 rotation = new Vector3(0,3,0);
     private float distance;
     // Start is called before the first frame update
     void Start()

@@ -25,6 +25,7 @@ public class BigScrapBang : MonoBehaviour
             animator.playbackTime = playbackTime;
 
             gameObject.transform.parent = parentTransform;
+            Debug.Log(" DO REMOVEOBJECTFROMANIMATOR");
         }
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Ground") || other.CompareTag("Scrap"))
