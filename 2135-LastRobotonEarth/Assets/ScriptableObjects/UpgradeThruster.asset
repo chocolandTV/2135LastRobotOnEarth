@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <costs>k__BackingField: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   <multiplier>k__BackingField:
+  - 0
   - 1
+  - 1.05
   - 1.1
+  - 1.15
   - 1.2
+  - 1.25
   - 1.3
+  - 1.35
   - 1.4
-  - 2
-  - 2.2
-  - 2.4
-  - 2.6
-  - 3.5
-  <activeLevel>k__BackingField: 0
+  <activeLevel>k__BackingField: 4

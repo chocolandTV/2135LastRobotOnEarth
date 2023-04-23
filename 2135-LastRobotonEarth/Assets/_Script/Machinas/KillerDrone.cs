@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class KillerDrone : MonoBehaviour
 {
-    [SerializeField]private AudioSource droneSound;
+    private AudioSource droneSound;
+    private void Start() {
+        droneSound = GetComponent<AudioSource>();
+    }
     public void StartKillerDroneSound()
     {
         droneSound.Play();

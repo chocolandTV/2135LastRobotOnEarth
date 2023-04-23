@@ -41,17 +41,22 @@ public class ResourceSource : MonoBehaviour
         while (ResourceManager.Instance.isSpaceInStorage() && quantity > 0)
         {   
             
-            scalableObject.transform.localScale *= (0.9f / VariableManager.Instance.Game_collecting_speed);
-            particleSystem.Emit(emitParams, quantity);
             if (ResourceManager.Instance.isSpaceInStorage())
             // ADD RESOURCE
             {
-                ResourceManager.Instance.AddResourcePlayer(1);
-                quantity--;
+                scalableObject.transform.localScale *= (1.0f - (VariableManager.Instance.Game_collecting_speed/20));
+                particleSystem.Emit(emitParams, quantity);
+                // REST CHECK
+                int extracValue = (int)VariableManager.Instance.Game_collecting_speed;
+                if(quantity < (int)VariableManager.Instance.Game_collecting_speed){
+                    extracValue = quantity;
+                }
+                quantity -= extracValue;
+                ResourceManager.Instance.AddResourcePlayer(extracValue);
                 text.text = "+ " + quantity;
 
             }
-            yield return new WaitForSeconds(scalableObject.transform.localScale.x / VariableManager.Instance.Game_collecting_speed);
+            yield return new WaitForSeconds(1);
         }
         if(quantity <=0){
 

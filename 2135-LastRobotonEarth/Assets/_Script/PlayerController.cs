@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour
     private void ThrusterImpulse()
     {
         _rigidbody.velocity = Vector3.zero;
+        Debug.Log(jumpForce *VariableManager.Instance.Game_thruster_power);
         _rigidbody.AddForce(Vector3.up* jumpForce *VariableManager.Instance.Game_thruster_power,ForceMode.Impulse);
         ThrusterParticleSystem.Emit(emitParams, (int)(jumpForce *VariableManager.Instance.Game_thruster_power));
         StartCoroutine(WaitUntilGrounded());

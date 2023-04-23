@@ -11,6 +11,7 @@ TagManager:
   - Attractor
   - Terraformer
   - restart
+  - Drone
   layers:
   - Default
   - TransparentFX

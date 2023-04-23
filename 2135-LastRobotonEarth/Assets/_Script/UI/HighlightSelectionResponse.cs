@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class HighlightSelectionResponse : MonoBehaviour, ISelectionResponse
 {
-    [SerializeField] public Material highlightMaterial;
-    [SerializeField] public Material oldMaterial;
+    // [SerializeField] private Material highlightMaterial;
+    // [SerializeField] private Material oldMaterial;
+    
     public void OnSelect(Transform selection)
     {
+        
         selection.GetComponent<ResourceSourceUI>().OnCrosshairEnter();
             // var selectionRenderer = selection.GetComponent<Renderer>();
             // if(selectionRenderer != null)

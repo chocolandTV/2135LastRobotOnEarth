@@ -9,12 +9,14 @@ public class SelectionManager : MonoBehaviour
     private ISelectionResponse _selectionResponse;
     [SerializeField] GameObject storeUI;
     [SerializeField] GameObject menuUI;
+    [SerializeField] private GameObject DroneHudMenu;
     private void Awake()
     {
         _selectionResponse = GetComponent<ISelectionResponse>();
         
         
     }
+    
     private bool isStoreOn()
     {
         return (storeUI.activeSelf);
@@ -56,6 +58,11 @@ public class SelectionManager : MonoBehaviour
             {
                 
                 _selection = selection;
+            }
+            if(selection.CompareTag("Drone"))
+            {
+                DroneHudMenu.SetActive(true);
+                
             }
         }
         // END DEFINE

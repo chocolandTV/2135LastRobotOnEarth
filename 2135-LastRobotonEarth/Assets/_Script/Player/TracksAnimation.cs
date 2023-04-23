@@ -6,7 +6,7 @@ public class TracksAnimation : MonoBehaviour
 {
     [SerializeField] private Renderer playerTrackRenderer;
     private new Rigidbody rigidbody;
-    [SerializeField] private AudioSource Tracksound;
+   
     private float velocity;
     private float offset= 0.0f;
 
@@ -33,7 +33,7 @@ public class TracksAnimation : MonoBehaviour
     private void TracksSound(float volume)
     {
         
-        Tracksound.volume  = Mathf.Clamp(volume/20, 0, 0.1f);
+        // Tracksound.volume  = Mathf.Clamp(volume/20, 0, 0.1f);
     }
    private void TracksAnim(float value)
     {
