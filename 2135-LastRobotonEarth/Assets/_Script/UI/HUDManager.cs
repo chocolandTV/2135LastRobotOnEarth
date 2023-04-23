@@ -13,6 +13,8 @@ public class HUDManager : MonoBehaviour
     // UPGRADE STORE 
     [SerializeField] private GameObject hudCrossHair;
     [SerializeField] private GameObject hudUpgradeUI;
+    [SerializeField]private GameObject particleWin;
+    private bool isWinning = false;
     private void Awake() {
         if(Instance != null)
         {
@@ -36,39 +38,54 @@ public class HUDManager : MonoBehaviour
     }
     public void PlayerTankFullMission()
     {
+        if(!isWinning){
         objectiveNameUI.fontSize = 26;
         objectiveNameUI.text = "SECONDARY:";
         objectiveValueUI.fontSize = 26;
         objectiveValueUI.text = "Deliver the scrap to the Terraformer.";
-        SoundManager.Instance.PlaySound(SoundManager.Sound.Robot_StorageFull, PlayerController.Instance.gameObject.transform.position);
+        SoundManager.Instance.PlaySound(SoundManager.Sound.Robot_StorageFull, PlayerController.Instance.gameObject.transform.position);}
     }
     public void PlayerEnterShuttleMission()
     {
-        objectiveNameUI.fontSize = 26;
-        objectiveNameUI.text = "IMPORTANT:";
-        objectiveValueUI.fontSize = 26;
-        objectiveValueUI.text = "Press E to open the upgradestore";
+        if(!isWinning){
+            objectiveNameUI.fontSize = 26;
+            objectiveNameUI.text = "IMPORTANT:";
+            objectiveValueUI.fontSize = 26;
+            objectiveValueUI.text = "Press E to open the upgradestore";}
     }
     public void PlayerEnterUpgradeStore()
     {
-        objectiveNameUI.fontSize = 26;
-        objectiveNameUI.text = "IMPORTANT:";
-        objectiveValueUI.fontSize = 24;
-        objectiveValueUI.text = "Upgrade your performance and Terraformer to max";
+        if(!isWinning){
+            objectiveNameUI.fontSize = 26;
+            objectiveNameUI.text = "IMPORTANT:";
+            objectiveValueUI.fontSize = 24;
+            objectiveValueUI.text = "Upgrade your performance and Terraformer to max";}
     }
     public void PlayerExitUpgradeStore()
     {
-        objectiveNameUI.fontSize = 30;
-        objectiveNameUI.text = "IMPORTANT:";
-        objectiveValueUI.fontSize = 36;
-        objectiveValueUI.text = "Collect Scraps from nearby Objects";
+        if(!isWinning){
+            objectiveNameUI.fontSize = 30;
+            objectiveNameUI.text = "IMPORTANT:";
+            objectiveValueUI.fontSize = 36;
+            objectiveValueUI.text = "Collect Scraps from nearby Objects";}
+    }
+    public void PlayerWinGame()
+    {
+        objectiveNameUI.fontSize = 32;
+        objectiveNameUI.text = "You Won:";
+        objectiveValueUI.fontSize = 38;
+        objectiveValueUI.text = " Thanks for playing! ";
+        particleWin.SetActive(true);
+        isWinning=true;
+
     }
     public void PlayerDefaultMission()
     {
-        objectiveNameUI.fontSize = 36;
-        objectiveNameUI.text = objectNameDefault;
-        objectiveValueUI.fontSize = 36;
-        objectiveValueUI.text = objectValueDefault;
+        if(!isWinning){
+            objectiveNameUI.fontSize = 36;
+            objectiveNameUI.text = objectNameDefault;
+            objectiveValueUI.fontSize = 36;
+            objectiveValueUI.text = objectValueDefault;}
     }
     public void OnChangeScrapUI()
     {

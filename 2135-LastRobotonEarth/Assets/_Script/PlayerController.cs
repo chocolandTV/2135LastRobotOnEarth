@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
     // VERTICAL MOUSEMOVEMENT
     public Vector3 mouseVerticalVector =Vector3.right; // MAIN MENU CHANGABLE
+    // GAME PAUSED
+    
     private void Awake()
     {
         if (Instance != null)
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
         Instance = this;
         _rigidbody = GetComponent<Rigidbody>();
         startposition = transform.position;
-        SubscribeToInput();
+        
     }
 
     // Start is called before the first frame update
@@ -54,12 +56,18 @@ public class PlayerController : MonoBehaviour
         _camera = Camera.main;
 
     }
-
+    public void StartGame()
+    {
+        SubscribeToInput();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     private void SubscribeToInput()
     {
         InputManager.OnLook += OnLookInput;
         InputManager.OnMove += OnMoveInput;
         InputManager.OnInteract += OnInteractInput;
+        
 
     }
     private void UnsubscribeFromInput()
@@ -68,7 +76,7 @@ public class PlayerController : MonoBehaviour
         InputManager.OnMove -= OnMoveInput;
         InputManager.OnInteract -= OnInteractInput;
         InputManager.OnThruster -= OnThrusterInput;
-
+        
     }
     public void ChangeThrusterUpgrade()
     {

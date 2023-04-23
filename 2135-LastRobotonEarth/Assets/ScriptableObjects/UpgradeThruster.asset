@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751cfbeecf087474f9c812d2a9a7a86e, type: 3}
   m_Name: UpgradeThruster
   m_EditorClassIdentifier: 
-  <costs>k__BackingField: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  <costs>k__BackingField: 14000000280000003c00000064000000780000008c000000a0000000c80000002c01000090010000
   <multiplier>k__BackingField:
   - 0
   - 1
@@ -24,4 +24,4 @@ MonoBehaviour:
   - 4
   - 4.5
   - 5
-  <activeLevel>k__BackingField: 6
+  <activeLevel>k__BackingField: 0

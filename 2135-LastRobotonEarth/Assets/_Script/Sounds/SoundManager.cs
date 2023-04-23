@@ -49,6 +49,7 @@ public class SoundManager : MonoBehaviour
     public void OnChangeMusicVolume(float value)
     {
         gameVariables.MusicVolume  = value;
+        MusicObject.volume = gameVariables.MusicVolume;
     }
     public void OnChangeSoundVolume(float value)
     {
@@ -60,18 +61,14 @@ public class SoundManager : MonoBehaviour
         // obj.transform.position = position;
        audioSourcePool.PlayAtPoint(audioClips[(int)value], position,SoundObject.GetComponent<AudioSource>(), gameVariables.SoundVolume);
     }
-    public void PlaySound(Sound value,Vector3 position, float Volume)
-    {
-        // GameObject obj =Instantiate(SoundObject);
-        // obj.transform.position = position;
-       audioSourcePool.PlayAtPoint(audioClips[(int)value], position,SoundObject.GetComponent<AudioSource>(), Volume);
-    }
+    
     public void PlayMusicNext()
     {
         MusicObject.PlayOneShot(SongList[currentMusicIndex], gameVariables.MusicVolume);
         
         Invoke(nameof(EventOnEnd),SongList[currentMusicIndex].length);
     }
+    
     void EventOnEnd()
     {
         if(Application.isEditor) Debug.LogWarning("audio finished!");

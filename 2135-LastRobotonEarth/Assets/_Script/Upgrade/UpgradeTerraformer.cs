@@ -55,5 +55,9 @@ public class UpgradeTerraformer : MonoBehaviour
         // SOUND 
         SoundManager.Instance.PlaySound(SoundManager.Sound.upgrade_complete, PlayerController.Instance.gameObject.transform.position);
         PlayerAnimate.Instance.PlayerStartAnimateRemote(1);
+        if(level == 9)
+        {
+            HUDManager.Instance.PlayerWinGame();
+        }
     }
 }
