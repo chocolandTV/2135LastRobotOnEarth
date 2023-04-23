@@ -40,6 +40,9 @@ public class BigScrapBang : MonoBehaviour
                 
                 obj.transform.localScale=(Vector3.one *scale);
                 obj.GetComponent<ResourceSource>().quantity = scaleQuantity;
+                Vector3 impulse = new Vector3(Random.Range(-1,1),1,(Random.Range(-1,1)));
+                // OBJECT SPLIT UP AND FLY ACROSS THE IMPACT RADIUS
+                obj.GetComponent<Rigidbody>().AddForce(impulse* Random.Range(10,50),ForceMode.Impulse);
             }
             emit01.Emit(emitParams, 5);
             emit02.Emit(emitParams, 30);

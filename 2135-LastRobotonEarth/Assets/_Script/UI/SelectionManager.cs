@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
-    // 7:48
+    
     private Transform _selection;
     private ISelectionResponse _selectionResponse;
     private void Awake()

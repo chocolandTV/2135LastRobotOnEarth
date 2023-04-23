@@ -39,7 +39,7 @@ public class TankManager : MonoBehaviour
             lastTankIcon.SetActive(false);
             tankIcons[0].SetActive(true);
             lastTankIcon = tankIcons[0];
-            HUDManager.Instance.PlayerDefaultMission();
+            
 
             
         }else if ( Value > 0 && Value <= 20)
@@ -47,7 +47,7 @@ public class TankManager : MonoBehaviour
             lastTankIcon.SetActive(false);
             tankIcons[1].SetActive(true);
             lastTankIcon = tankIcons[1];
-
+            HUDManager.Instance.PlayerDefaultMission();
             
         }
         else if ( Value > 20 && Value <= 40)

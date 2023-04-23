@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba1d1f7eedc9234d9794a8c6bd268e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
 --- !u!1 &3155015521046746348
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5047637874665485307}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.39, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -443,7 +442,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5253,8 +5252,6 @@ MonoBehaviour:
   scalableObject: {fileID: 1332016835077433524}
   particleSystem: {fileID: 5047637874665485284}
   text: {fileID: 8538458974365143178}
-  deathOverTextObject: {fileID: 2206275078232908572, guid: a05a56a8f409d64489a27aaae39ccd88,
-    type: 3}
 --- !u!114 &5089993472263451969
 MonoBehaviour:
   m_ObjectHideFlags: 0

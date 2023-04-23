@@ -13,7 +13,7 @@ public class UpgradeAttractor : MonoBehaviour
     // Start is called before the first frame update
     private string upgradeName = "Upgrade Attractor";
     private int level = 1;
-    private int maxlevel = 10;
+    private int maxlevel = 9;
 
     void Start()
     {

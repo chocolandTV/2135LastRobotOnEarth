@@ -13,7 +13,7 @@ public class UpgradeThruster : MonoBehaviour
     // Start is called before the first frame update
     private string upgradeName = "Upgrade Thruster";
     private int level = 0;
-    private int maxlevel = 10;
+    private int maxlevel = 9;
 
     void Start()
     {

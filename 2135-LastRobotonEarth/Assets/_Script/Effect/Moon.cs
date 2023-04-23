@@ -26,6 +26,6 @@ public class Moon : MonoBehaviour
     void FixedUpdate()
     {
         Rotate();
-        KeepDistance();
+        // KeepDistance();
     }
 }

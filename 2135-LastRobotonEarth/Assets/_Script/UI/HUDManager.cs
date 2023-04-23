@@ -39,7 +39,7 @@ public class HUDManager : MonoBehaviour
         objectiveNameUI.fontSize = 26;
         objectiveNameUI.text = "SECONDARY:";
         objectiveValueUI.fontSize = 26;
-        objectiveValueUI.text = "Deliver the scrap to the shuttle.";
+        objectiveValueUI.text = "Deliver the scrap to the Terraformer.";
         SoundManager.Instance.PlaySound(SoundManager.Sound.Robot_StorageFull, PlayerController.Instance.gameObject.transform.position);
     }
     public void PlayerEnterShuttleMission()
@@ -47,7 +47,21 @@ public class HUDManager : MonoBehaviour
         objectiveNameUI.fontSize = 26;
         objectiveNameUI.text = "IMPORTANT:";
         objectiveValueUI.fontSize = 26;
-        objectiveValueUI.text = "Press E to open the Upgradestore";
+        objectiveValueUI.text = "Press E to open the upgradestore";
+    }
+    public void PlayerEnterUpgradeStore()
+    {
+        objectiveNameUI.fontSize = 26;
+        objectiveNameUI.text = "IMPORTANT:";
+        objectiveValueUI.fontSize = 24;
+        objectiveValueUI.text = "Upgrade your performance and Terraformer to max";
+    }
+    public void PlayerExitUpgradeStore()
+    {
+        objectiveNameUI.fontSize = 26;
+        objectiveNameUI.text = "IMPORTANT:";
+        objectiveValueUI.fontSize = 26;
+        objectiveValueUI.text = "Collect Scraps from nearby Objects";
     }
     public void PlayerDefaultMission()
     {

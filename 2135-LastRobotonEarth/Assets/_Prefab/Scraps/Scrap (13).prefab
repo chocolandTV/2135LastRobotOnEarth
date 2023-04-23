@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba1d1f7eedc9234d9794a8c6bd268e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
 --- !u!1 &997020358356653524
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,8 +380,6 @@ MonoBehaviour:
   scalableObject: {fileID: 7088003854430279731}
   particleSystem: {fileID: 6922651351923421916}
   text: {fileID: 5791715361950552498}
-  deathOverTextObject: {fileID: 2206275078232908572, guid: a05a56a8f409d64489a27aaae39ccd88,
-    type: 3}
 --- !u!114 &6970929305524794489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,7 +538,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2

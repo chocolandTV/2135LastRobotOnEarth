@@ -41,13 +41,17 @@ public class UpgradeUIManager : MonoBehaviour
         foreach (UpgradeSettings x in upgradesSettings)
         {
             CostTexts[counter].text = x.costs[x.activeLevel].ToString();
-            levelTexts[counter].text = x.activeLevel.ToString();
+            if(x.activeLevel < 9){
+            levelTexts[counter].text = x.activeLevel.ToString();}
+            else{
+                levelTexts[counter].text = "MAX";
+            }
            
             for (int i = 0; i < 10; i++)
             {
-                if(x.activeLevel >= i+1)
-                    levelProgressIcons[i*counter].texture = recycleActive;
-                    levelProgressIcons[i*counter].color = Color.HSVToRGB(180f,100f, 100f);
+                if(x.activeLevel >= i)
+                    levelProgressIcons[i+counter*10].texture = recycleActive;
+                    levelProgressIcons[i+counter*10].color = Color.HSVToRGB(180f,100f, 100f);
             }
             counter ++;
         }

@@ -85,7 +85,9 @@ public class PlayerController : MonoBehaviour
             Cursor.visible = true;
             UpgradeUIManager.Instance.UpgradeStoreSetActive(true);
             HUDManager.Instance.OnCrossHairChange(false);
-            
+            // ADD DESCRIPTION IN UPGRADE STORE AND DELETE ERROR MESSAGES 
+            HUDManager.Instance.PlayerEnterUpgradeStore();
+            UpgradeUIManager.Instance.ErrorMessage_Hide();
         }
         else if (!value) // UPGRADE STORE OFF
         {
@@ -97,6 +99,7 @@ public class PlayerController : MonoBehaviour
             UpgradeUIManager.Instance.UpgradeStoreSetActive(false);
             PlayerController.Instance.isUpgrading = false;
             HUDManager.Instance.OnCrossHairChange(true);
+            HUDManager.Instance.PlayerExitUpgradeStore();
         }
     }
     // Update is called once per frame

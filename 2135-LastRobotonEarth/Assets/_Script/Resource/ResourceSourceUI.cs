@@ -12,7 +12,7 @@ public class ResourceSourceUI : MonoBehaviour
         popupPanel.SetActive(false);
     }
 
-    // Update is called once per frame
+    
     public void OnCrosshairEnter() {
         popupPanel.SetActive(true);
     }
