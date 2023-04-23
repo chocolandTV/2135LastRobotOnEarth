@@ -15,6 +15,7 @@ public class ResourceSourceUI : MonoBehaviour
     
     public void OnCrosshairEnter() {
         popupPanel.SetActive(true);
+        popupPanel.GetComponent<Canvas>().worldCamera = Camera.main;
     }
     public void OnCrosshairExit(){
         popupPanel.SetActive(false);

@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Renderer playerTrackRenderer;
     private bool isJumping = false;
     [SerializeField] private Transform isGroundedCheckObject;
-    [SerializeField] private float jumpForce = 50.0f;
+    [SerializeField] private float jumpForce = 25.0f;
     [SerializeField] private ParticleSystem ThrusterParticleSystem;
     ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
     // VERTICAL MOUSEMOVEMENT
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
             // ADD DESCRIPTION IN UPGRADE STORE AND DELETE ERROR MESSAGES 
             HUDManager.Instance.PlayerEnterUpgradeStore();
             UpgradeUIManager.Instance.ErrorMessage_Hide();
+            _moveInput = Vector2.zero;
         }
         else if (!value) // UPGRADE STORE OFF
         {
@@ -106,15 +107,19 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         HandleInput();
+        
         Move();
         
     }
 
     private void Move()
     {
-        float step = (UpgradedMovementSpeed * VariableManager.Instance.Game_movement_multiplier) * Time.fixedDeltaTime;
+        if(_moveInput != Vector2.zero)
+       { 
+            float step = (UpgradedMovementSpeed * VariableManager.Instance.Game_movement_multiplier) * Time.fixedDeltaTime;
 
-        _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, nextPosition, step));
+            _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, nextPosition, step));
+        }
     }
     private void HandleInput()
     {
@@ -158,8 +163,9 @@ public class PlayerController : MonoBehaviour
     }
     private void ThrusterImpulse()
     {
+        _rigidbody.velocity = Vector3.zero;
         _rigidbody.AddForce(Vector3.up* jumpForce *VariableManager.Instance.Game_thruster_power,ForceMode.Impulse);
-        ThrusterParticleSystem.Emit(emitParams, 100);
+        ThrusterParticleSystem.Emit(emitParams, (int)(jumpForce *VariableManager.Instance.Game_thruster_power));
         StartCoroutine(WaitUntilGrounded());
     }
 

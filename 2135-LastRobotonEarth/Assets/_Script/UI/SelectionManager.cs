@@ -7,15 +7,25 @@ public class SelectionManager : MonoBehaviour
     
     private Transform _selection;
     private ISelectionResponse _selectionResponse;
+    [SerializeField] GameObject storeUI;
+    [SerializeField] GameObject menuUI;
     private void Awake()
     {
         _selectionResponse = GetComponent<ISelectionResponse>();
-        Debug.Log(Camera.main);
         
+        
+    }
+    private bool isStoreOn()
+    {
+        return (storeUI.activeSelf);
+    }
+    private bool isMenuOn()
+    {
+        return(menuUI.activeSelf);
     }
     void OnApplicationFocus(bool hasFocus)
     {
-        if (hasFocus)
+        if (hasFocus && !isStoreOn() && !isMenuOn())
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -44,6 +54,7 @@ public class SelectionManager : MonoBehaviour
             var selection = hit.transform;
             if (selection.CompareTag("Scrap"))
             {
+                
                 _selection = selection;
             }
         }

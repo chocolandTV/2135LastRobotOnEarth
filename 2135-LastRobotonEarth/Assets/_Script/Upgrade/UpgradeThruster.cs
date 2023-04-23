@@ -22,7 +22,7 @@ public class UpgradeThruster : MonoBehaviour
     public void OnButtonClickUpgrade()
     {
         Debug.Log(upgradeName);
-        if(level <= maxlevel)
+        if(level < maxlevel)
         {
             if(ResourceManager.Instance.canPurchase(upgradeSettings.costs[level]))
             {
@@ -54,7 +54,7 @@ public class UpgradeThruster : MonoBehaviour
         UpgradeUIManager.Instance.UpdateUI();
         HUDManager.Instance.OnChangeScrapUI();
         // SOUND 
-        SoundManager.Instance.PlaySound(SoundManager.Sound.Robot_Happy, PlayerController.Instance.gameObject.transform.position);
+        SoundManager.Instance.PlaySound(SoundManager.Sound.upgrade_complete, PlayerController.Instance.gameObject.transform.position);
         PlayerAnimate.Instance.PlayerStartAnimateRemote(1);
     }
 }

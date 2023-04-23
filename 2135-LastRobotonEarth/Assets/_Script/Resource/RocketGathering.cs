@@ -23,7 +23,7 @@ public class RocketGathering : MonoBehaviour
         }
     }
     private void OnTriggerStay(Collider other) {
-        if(other.CompareTag("Recycler"))
+        if(other.CompareTag("Recycler") && ResourceManager.Instance.GamePlayerScraps >0)
         {
             int holdScraps = ResourceManager.Instance.GamePlayerScraps;
             ResourceManager.Instance.RemovePlayerResource();

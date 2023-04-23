@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751cfbeecf087474f9c812d2a9a7a86e, type: 3}
   m_Name: UpgradeTerraformer
   m_EditorClassIdentifier: 
-  <costs>k__BackingField: 14000000000000000000000000000000000000000000000000000000000000000000000000000000
+  <costs>k__BackingField: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   <multiplier>k__BackingField:
+  - 0
   - 1
   - 2
   - 3
@@ -22,6 +23,5 @@ MonoBehaviour:
   - 6
   - 7
   - 8
-  - 9
   - 10
-  <activeLevel>k__BackingField: 1
+  <activeLevel>k__BackingField: 0

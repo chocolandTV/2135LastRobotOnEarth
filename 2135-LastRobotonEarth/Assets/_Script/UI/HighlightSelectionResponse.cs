@@ -8,26 +8,26 @@ public class HighlightSelectionResponse : MonoBehaviour, ISelectionResponse
     [SerializeField] public Material oldMaterial;
     public void OnSelect(Transform selection)
     {
-        
-            var selectionRenderer = selection.GetComponent<Renderer>();
-            if(selectionRenderer != null)
-            {
+        selection.GetComponent<ResourceSourceUI>().OnCrosshairEnter();
+            // var selectionRenderer = selection.GetComponent<Renderer>();
+            // if(selectionRenderer != null)
+            // {
                 
-                selectionRenderer.material = highlightMaterial;
-                selection.GetComponent<ResourceSourceUI>().OnCrosshairEnter();
-            }
+            //     //selectionRenderer.material = highlightMaterial;
+            //     selection.GetComponent<ResourceSourceUI>().OnCrosshairEnter();
+            // }
         
     }
     public void OnDeselect(Transform selection)
     {
         
-            var selectionRenderer = selection.GetComponent<Renderer>();
-            if(selectionRenderer != null)
-            {
+        selection.GetComponent<ResourceSourceUI>().OnCrosshairExit();
+            // var selectionRenderer = selection.GetComponent<Renderer>();
+            // if(selectionRenderer != null)
+            // {
                 
-                selectionRenderer.material = oldMaterial;
-                selection.GetComponent<ResourceSourceUI>().OnCrosshairExit();
-            }
+            //     //selectionRenderer.material = oldMaterial;
+            // }
         
     }
 

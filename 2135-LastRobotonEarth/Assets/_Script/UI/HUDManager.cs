@@ -58,9 +58,9 @@ public class HUDManager : MonoBehaviour
     }
     public void PlayerExitUpgradeStore()
     {
-        objectiveNameUI.fontSize = 26;
+        objectiveNameUI.fontSize = 30;
         objectiveNameUI.text = "IMPORTANT:";
-        objectiveValueUI.fontSize = 26;
+        objectiveValueUI.fontSize = 36;
         objectiveValueUI.text = "Collect Scraps from nearby Objects";
     }
     public void PlayerDefaultMission()

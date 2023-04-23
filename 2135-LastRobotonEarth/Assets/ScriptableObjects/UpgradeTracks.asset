@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751cfbeecf087474f9c812d2a9a7a86e, type: 3}
   m_Name: UpgradeTracks
   m_EditorClassIdentifier: 
-  <costs>k__BackingField: 01000000000000000000000000000000000000000000000000000000000000000000000000000000
+  <costs>k__BackingField: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   <multiplier>k__BackingField:
   - 1
   - 1.2
   - 1.4
-  - 1.5
-  - 1.7
+  - 1.6
+  - 1.8
   - 2
+  - 2.2
   - 2.4
-  - 2.8
+  - 2.6
   - 3
-  - 3.5
-  <activeLevel>k__BackingField: 1
+  <activeLevel>k__BackingField: 0

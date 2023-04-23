@@ -40,9 +40,11 @@ public class UpgradeUIManager : MonoBehaviour
         int counter = 0;
         foreach (UpgradeSettings x in upgradesSettings)
         {
+            
             CostTexts[counter].text = x.costs[x.activeLevel].ToString();
             if(x.activeLevel < 9){
-            levelTexts[counter].text = x.activeLevel.ToString();}
+                int levelUI = x.activeLevel +1;
+                levelTexts[counter].text = levelUI.ToString();}
             else{
                 levelTexts[counter].text = "MAX";
             }
@@ -61,7 +63,7 @@ public class UpgradeUIManager : MonoBehaviour
          ModifierTexts[3].text = (10 * VariableManager.Instance.Game_thruster_power).ToString("F2") + "  au";
          ModifierTexts[4].text = (10 * VariableManager.Instance.Game_Terraformer_mission).ToString("F2") + " %";
         
-        SoundManager.Instance.PlaySound(SoundManager.Sound.MenuClick, PlayerController.Instance.gameObject.transform.position);
+        
 
     }
     public void UpgradeStoreSetActive(bool value)
@@ -88,13 +90,13 @@ public class UpgradeUIManager : MonoBehaviour
     public void ErrorMessage_NotEnoughScrap()
     {
         error_NotEnoughScrap.SetActive(true);
-        SoundManager.Instance.PlaySound(SoundManager.Sound.MenuClick, PlayerController.Instance.gameObject.transform.position);
+        SoundManager.Instance.PlaySound(SoundManager.Sound.upgrade_failed, PlayerController.Instance.gameObject.transform.position);
         // ROBO ANIMATION
     }
     public void ErrorMessage_ReachedMaxLevel()
     {
         Error_MaxLevel.SetActive(true);
-        SoundManager.Instance.PlaySound(SoundManager.Sound.MenuClick, PlayerController.Instance.gameObject.transform.position);
+        SoundManager.Instance.PlaySound(SoundManager.Sound.upgrade_failed, PlayerController.Instance.gameObject.transform.position);
         // ROBO ANIMATION
     }
 }
