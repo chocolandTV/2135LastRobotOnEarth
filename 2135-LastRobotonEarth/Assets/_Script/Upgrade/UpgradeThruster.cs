@@ -48,7 +48,7 @@ public class UpgradeThruster : MonoBehaviour
         level++;
         upgradeSettings.activeLevel = level;
         VariableManager.Instance.SetThrusterPower(upgradeSettings.multiplier[level]);
-        if(level >0){
+        if(level ==1){
             PlayerController.Instance.ChangeThrusterUpgrade();
         }
         UpgradeUIManager.Instance.UpdateUI();

@@ -21,6 +21,13 @@ public class VariableManager : MonoBehaviour
         Instance = this;
         
     }
+    private void Start() {
+        Game_collecting_speed = 1;
+        Game_movement_multiplier =1;
+        Game_tank_capacity_multiplier = 1;
+        Game_Terraformer_mission = 1;
+        Game_thruster_power=0;
+    }
     public void SetMovementMultiplier(float value)
     {
         Game_movement_multiplier = value;
