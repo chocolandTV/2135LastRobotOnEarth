@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         float step = (UpgradedMovementSpeed * VariableManager.Instance.Game_movement_multiplier) * Time.fixedDeltaTime;
-        // playerTrackRenderer.material.SetTextureOffset ("_MainTex",Vector2.left*0.1f);
+
         _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, nextPosition, step));
     }
     private void HandleInput()
