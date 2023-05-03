@@ -44,6 +44,7 @@ public class SoundManager : MonoBehaviour
     private void Start() {
         // MusicObject = GetComponent<AudioSource>();
         audioSourcePool = GetComponent<AudioSourcePool>();
+        currentMusicIndex = Random.Range(0,4);
         PlayMusicNext();
     }
     public void OnChangeMusicVolume(float value)

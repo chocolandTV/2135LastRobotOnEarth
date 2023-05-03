@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
     public Vector3 startposition;
     [SerializeField] private float movementSpeed = 12.5f; // Upgrade Multiplier 1; 10
+    [SerializeField] private float smoothInputSpeed = 0.2f;
+    private Vector2 currentInputVector;
+    private Vector2 smoothInputVelocity;
+   
     public float UpgradedMovementSpeed => movementSpeed * VariableManager.Instance.Game_movement_multiplier;
     private Vector2 _moveInput;
     private Vector2 _lookInputDelta;
@@ -27,13 +31,16 @@ public class PlayerController : MonoBehaviour
     // TRACK ANIMATION
     [SerializeField] private Renderer playerTrackRenderer;
     private bool isJumping = false;
+    private int counter=0;
     [SerializeField] private Transform isGroundedCheckObject;
     [SerializeField] private float jumpForce = 25.0f;
     [SerializeField] private ParticleSystem ThrusterParticleSystem;
     ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
     // VERTICAL MOUSEMOVEMENT
-    public Vector3 mouseVerticalVector =Vector3.right; // MAIN MENU CHANGABLE
-    // GAME PAUSED
+    public Vector3 mouseVerticalVector = -Vector3.right; // MAIN MENU CHANGABLE
+    // Thruster mats
+    [SerializeField]private Material thrusterMat, thrusterReadyMat;
+    [SerializeField] private Renderer ThrusterRenderer;
     
     private void Awake()
     {
@@ -54,6 +61,8 @@ public class PlayerController : MonoBehaviour
 
         _lookVector = Vector2.zero;
         _camera = Camera.main;
+        
+        mouseVerticalVector = -Vector3.right;
 
     }
     public void StartGame()
@@ -119,14 +128,21 @@ public class PlayerController : MonoBehaviour
         Move();
         
     }
-
+ // float step = (UpgradedMovementSpeed * VariableManager.Instance.Game_movement_multiplier) * Time.fixedDeltaTime;
+ // _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, nextPosition, smoothInputVelocity));
     private void Move()
     {
-        if(_moveInput != Vector2.zero)
-       { 
-            float step = (UpgradedMovementSpeed * VariableManager.Instance.Game_movement_multiplier) * Time.fixedDeltaTime;
-
-            _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, nextPosition, step));
+            currentInputVector= Vector2.SmoothDamp(currentInputVector,_moveInput, ref smoothInputVelocity, smoothInputSpeed,UpgradedMovementSpeed);
+            Vector3 move = new Vector3(currentInputVector.x,0, currentInputVector.y);
+            SpeedControl();
+            _rigidbody.AddForce((nextPosition - transform.position) * UpgradedMovementSpeed * 10f, ForceMode.Force);
+    }
+    private void SpeedControl(){
+        Vector3 flatVel = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
+        if(flatVel.magnitude > UpgradedMovementSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * UpgradedMovementSpeed;
+            _rigidbody.velocity = new Vector3 (limitedVel.x, _rigidbody.velocity.y, limitedVel.z);
         }
     }
     private void HandleInput()
@@ -171,11 +187,14 @@ public class PlayerController : MonoBehaviour
     }
     private void ThrusterImpulse()
     {
+        // MAT CHANGE
+        ThrusterRenderer.material = thrusterMat;
         _rigidbody.velocity = Vector3.zero;
         Debug.Log(jumpForce *VariableManager.Instance.Game_thruster_power);
         _rigidbody.AddForce(Vector3.up* jumpForce *VariableManager.Instance.Game_thruster_power,ForceMode.Impulse);
         ThrusterParticleSystem.Emit(emitParams, (int)(jumpForce *VariableManager.Instance.Game_thruster_power));
-        StartCoroutine(WaitUntilGrounded());
+        counter = 0;
+        StartCoroutine(WaitUntilCooldown());
     }
 
     private void OnLookInput(InputAction.CallbackContext context)
@@ -224,7 +243,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            if (!isJumping && isGrounded())
+            if (!isJumping)
             {
                 isJumping = true;
                 ThrusterImpulse();
@@ -235,15 +254,22 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    IEnumerator WaitUntilGrounded()
+    IEnumerator WaitUntilCooldown()
     {
-        while (!isGrounded())
+        
+        while (counter<= 3)
         {
+            counter ++;
             yield return new WaitForSeconds(1);
 
         }
+        // MAT CHANGE
+        ThrusterRenderer.material = thrusterReadyMat;
+        
         isJumping = false;
+        counter =0;
     }
+    
     private bool isGrounded()
     {
         return Physics.CheckSphere(isGroundedCheckObject.position,.1f, LayerMask.GetMask("Ground"));
